@@ -16,13 +16,16 @@ ActiveRecord::Schema.define(version: 20180128185827) do
   enable_extension "plpgsql"
 
   create_table "addresses", force: :cascade do |t|
-    t.text "address"
+    t.string "address"
     t.string "zipcode"
     t.string "city"
     t.string "phone"
     t.bigint "country_id"
+    t.string "addressable_type"
+    t.bigint "addressable_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["addressable_type", "addressable_id"], name: "index_addresses_on_addressable_type_and_addressable_id"
     t.index ["country_id"], name: "index_addresses_on_country_id"
   end
 
@@ -36,10 +39,9 @@ ActiveRecord::Schema.define(version: 20180128185827) do
 
   create_table "books", force: :cascade do |t|
     t.string "title"
-    t.text "descirption"
+    t.text "description"
     t.decimal "price", precision: 10, scale: 2
-    t.string "in"
-    t.integer "stock"
+    t.integer "in_stock"
     t.bigint "category_id"
     t.bigint "author_id"
     t.datetime "created_at", null: false
@@ -63,7 +65,7 @@ ActiveRecord::Schema.define(version: 20180128185827) do
   end
 
   create_table "credit_cards", force: :cascade do |t|
-    t.text "firstname"
+    t.string "firstname"
     t.string "lastname"
     t.string "number"
     t.string "cvv", limit: 3
@@ -88,9 +90,11 @@ ActiveRecord::Schema.define(version: 20180128185827) do
   create_table "order_items", force: :cascade do |t|
     t.decimal "price", precision: 10, scale: 2
     t.integer "quantity"
+    t.bigint "book_id"
     t.bigint "order_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["book_id"], name: "index_order_items_on_book_id"
     t.index ["order_id"], name: "index_order_items_on_order_id"
   end
 
@@ -123,6 +127,7 @@ ActiveRecord::Schema.define(version: 20180128185827) do
   add_foreign_key "books", "authors"
   add_foreign_key "books", "categories"
   add_foreign_key "credit_cards", "customers"
+  add_foreign_key "order_items", "books"
   add_foreign_key "order_items", "orders"
   add_foreign_key "orders", "credit_cards"
   add_foreign_key "orders", "customers"
