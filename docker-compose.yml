@@ -3,7 +3,7 @@ services:
   db:
     image: postgres:10-alpine
     volumes:
-      - 'postgres:/var/lib/postgresql/data'
+      - './database:/var/lib/postgresql/data'
     restart: always
   adminer:
     image: adminer
@@ -20,5 +20,3 @@ services:
     depends_on:
       - db
     restart: always
-volumes:
-  postgres:

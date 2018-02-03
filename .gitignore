@@ -5,3 +5,5 @@
 !/tmp/.keep
 # Ignore RubyMine files
 .idea
+# Ignore DB data
+/database
