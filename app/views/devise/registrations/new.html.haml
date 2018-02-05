@@ -1,0 +1,21 @@
+%main.container.general-main-wrap
+  .text-center
+    %h3.general-login-title= t('sign_up')
+    %a.general-login-icon{href: "#"}
+      %i.fa.fa-facebook-official
+    %p.general-login-text= t('or')
+  %form.general-form
+    .form-group.mb-30
+      %label.control-label.input-label{for: "email"}= t('enter_email')
+      %input#email.form-control{name:"email", type: "email", placeholder: "#{ t('enter_email') }"}
+    .form-group.mb-30
+      %label.control-label.input-label{for: "password"}= t('password')
+      %input#password.form-control{name:"password", type: "password", placeholder: "Password"}
+    .form-group.mb-30
+      %label.control-label.input-label{for: "confirm"} Confirm Password
+      %input#confirm.form-control{name:"confirm", type: "password", placeholder: "Confirm Password"}
+    .text-center
+      %button.btn.btn-default.mb-20= t('sign_up')
+  %p.general-sign-text.text-center
+    Don’t have an Account?
+    %a.in-gold-500{href: "#{ new_customer_session_path }"} Sign In

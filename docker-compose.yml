@@ -4,10 +4,10 @@ services:
     image: postgres:10-alpine
     volumes:
       - './database:/var/lib/postgresql/data'
-    restart: always
+#    restart: always
   adminer:
     image: adminer
-    restart: always
+#    restart: always
     ports:
       - 8099:8080
   web:
@@ -19,4 +19,4 @@ services:
       - "3000:3000"
     depends_on:
       - db
-    restart: always
+#    restart: always
