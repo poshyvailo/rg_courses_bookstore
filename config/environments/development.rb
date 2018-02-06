@@ -33,6 +33,9 @@ Rails.application.configure do
 
   config.action_mailer.default_url_options = { :host => 'localhost:3000' }
 
+  config.action_mailer.delivery_method = :file
+  config.action_mailer.file_settings = { :location => Rails.root.join('tmp/mail') }
+
   # Print deprecation notices to the Rails logger.
   config.active_support.deprecation = :log
 
