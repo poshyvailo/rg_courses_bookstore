@@ -6,7 +6,8 @@ class Customer < ApplicationRecord
          :recoverable,
          :rememberable,
          :trackable,
-         :validatable
+         :validatable,
+         :omniauthable
 
   has_many :orders
   has_many :ratings

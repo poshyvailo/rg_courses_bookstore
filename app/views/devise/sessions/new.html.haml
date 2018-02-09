@@ -4,22 +4,34 @@
     %a.general-login-icon{href: "#"}
       %i.fa.fa-facebook-official
     %p.general-login-text or
-  %form.general-form
+  = form_for(resource, as: resource_name, url: session_path(resource_name), :html => {:class => "general-form"}) do |f|
     .form-group.mb-30
-      %label.control-label.input-label{for: "email"} Enter Email
-      %input#email.form-control{name:"email", type: "email", placeholder: "Enter Email"}
+      = f.label :email, 'Enter Email',
+        class: 'control-label input-label'
+      = f.email_field :email,
+        class: 'form-control',
+        placeholder: 'Enter email',
+        autocomplete: 'email'
+      %span.help-block= resource.errors[:email].first unless resource.errors[:email].nil?
     .form-group.mb-30
-      %label.control-label.input-label{for: "password"} Password
-      %input#password.form-control{name:"password", type: "password", placeholder: "Password"}
+      = f.label :password, 'Password',
+         class: 'control-label input-label'
+      = f.password_field :password,
+        class: 'form-control',
+        placeholder: 'Password',
+        autocomplete: 'off'
+      %span.help-block= resource.errors[:password].first unless resource.errors[:password].nil?
       %a.help-block.in-gold-500{href: "#{ new_customer_password_path }"} Forgot password?
     .form-group.checkbox.text-center.mb-30
       %label.checkbox-label
-        %input.checkbox-input{type: "checkbox", hidden: "true"}
+        = f.check_box :remember_me,
+          hidden: 'true',
+          class: 'checkbox-input'
         %span.checkbox-icon
           %i.fa.fa-check
         %span.checkbox-text Remember me
     .text-center
-      %button.btn.btn-default.mb-20 Back to Store
+      = f.submit 'Log In', class: 'btn btn-default mb-20'
   %p.general-sign-text.text-center
     Don’t have an Account?
     %a.in-gold-500{href: "#{ new_customer_registration_path }"} Sign Up

@@ -49,7 +49,19 @@
               %li.divider{role: "separator"}
               %li
                 %a{href: "#"} Log out
-          %li
-            = link_to 'Sign Up', :new_customer_registration
-          %li
-            = link_to 'Sign In', :new_customer_session
+          - unless customer_signed_in?
+            %li
+              = link_to 'Sign Up', :new_customer_registration
+            %li
+              = link_to 'Sign In', :new_customer_session
+          - else
+            %li.dropdown
+              %a.dropdown-toggle{href: "#", 'data-toggle': "dropdown", role: "button", 'aria-haspopup': "true", 'aria-expanded': "false"} My account
+              %ul.dropdown-menu
+                %li
+                  %a{href: "#"} Orders
+                %li
+                  %a{href: "#"} Settings
+                %li.divider{role: "separator"}
+                %li
+                  = link_to 'Log out', :destroy_customer_session, method: :delete
