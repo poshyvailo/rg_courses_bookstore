@@ -61,7 +61,7 @@
                 %li
                   %a{href: "#"} Orders
                 %li
-                  %a{href: "#"} Settings
+                  = link_to 'Settings', :settings
                 %li.divider{role: "separator"}
                 %li
                   = link_to 'Log out', :destroy_customer_session, method: :delete

@@ -11,8 +11,7 @@ Rails.application.routes.draw do
   #   get '/reset_password', to: 'devise/password#edit'
   # end
 
-  devise_for :customers,
-             path_names: {sign_in: 'login', sign_out: 'logout'}
+  devise_for :customer
 
   get 'settings', to: 'customers#settings'
   get 'orders', to: 'customers#orders'
