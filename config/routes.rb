@@ -3,18 +3,16 @@ Rails.application.routes.draw do
 
   ActiveAdmin.routes(self)
 
-  # devise_scope :customers do
-  #   get '/sign_up', to: 'devise/registrations#new', as: :sing_up
-  #   get '/sign_in', to: 'devise/sessions#new'
-  #   get '/logout', to: 'devise/sessions#destroy'
-  #   get '/forgot_password', to: 'devise/password#new'
-  #   get '/reset_password', to: 'devise/password#edit'
-  # end
+  devise_for :customer, :path_names => { :sign_up => "register" }
 
-  devise_for :customer
-
-  get 'settings', to: 'customers#settings'
-  get 'orders', to: 'customers#orders'
+  resource :customer do
+    resource :orders
+    resource :settings do
+      member do
+        put 'change_email'
+      end
+    end
+  end
 
   root 'main#home'
 end

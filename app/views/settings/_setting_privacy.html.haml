@@ -1,10 +1,15 @@
 .row.mb-60
   .col-sm-5
     %p.in-gold-500.font-18.mb-25 Email
-    %form.general-form-md
+    = form_for(@customer, url: change_email_customer_settings_path, html: { method: 'PUT', class: 'general-form-md' }) do |f|
       .form-group.mb-35
-        %label.control-label.input-label{for: "email"} Enter Email
-        %input#email.form-control{name:"email", type: "email", placeholder: "Enter your email"}
+        = f.label :email, 'Enter email',
+          class: 'control-label input-label'
+        = f.email_field :email,
+          class: 'form-control',
+          placeholder: 'Enter email',
+          autocomplete: 'email',
+          value: ''
       .general-text-align
         %button.btn.btn-default.mb-35 Save
   .col-sm-5.col-sm-offset-1
@@ -25,7 +30,7 @@
     %p.in-gold-500.font-18.mb-25 Remove Account
     %form
       .general-settings-btn
-        %button.btn.disabled.mb-20 Please Remove My Account
+        %button.btn.mb-20 Please Remove My Account
       .form-group.checkbox.general-settings-checkbox
         %label.checkbox-label
           %input.checkbox-input{type: "checkbox", hidden: "true"}

@@ -1,5 +1,4 @@
-class MainController < ActionController::Base
-  layout 'application'
+class MainController < ApplicationController
   def home
   end
 end

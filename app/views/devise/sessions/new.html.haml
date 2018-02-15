@@ -4,37 +4,25 @@
     %a.general-login-icon{href: "#"}
       %i.fa.fa-facebook-official
     %p.general-login-text or
-  = form_for(resource, as: resource_name, url: session_path(resource_name), :html => {:class => "general-form"}) do |f|
-    .form-group.mb-30
-      %p= content_tag(:div, flash[:error], :id => "flash_error") if flash[:error]
-      %p= content_tag(:div, flash[:notice], :id => "flash_notice") if flash[:notice]
-      %p= content_tag(:div, flash[:alert], :id => "flash_alert") if flash[:alert]
-      = f.label :email, 'Enter Email',
-        class: 'control-label input-label'
-      = f.email_field :email,
-        class: 'form-control',
-        placeholder: 'Enter email',
-        autocomplete: 'email'
-      %span.help-block= resource.errors[:email].first unless resource.errors[:email].nil?
-    .form-group.mb-30
-      = f.label :password, 'Password',
-         class: 'control-label input-label'
-      = f.password_field :password,
-        class: 'form-control',
-        placeholder: 'Password',
-        autocomplete: 'off'
-      %span.help-block= resource.errors[:password].first unless resource.errors[:password].nil?
-      %a.help-block.in-gold-500{href: "#{ new_customer_password_path }"} Forgot password?
-    .form-group.checkbox.text-center.mb-30
+  = simple_form_for(resource, as: resource_name, url: session_path(resource_name), :html => {:class => "general-form"}) do |f|
+    = f.input :email,
+      label: 'Enter Email',
+      placeholder: 'Enter email'
+    = f.input :password,
+      label: 'Password',
+      placeholder: 'Password'
+    %a.help-block.in-gold-500{href: "#{ new_customer_password_path }"} Forgot password?
+    = f.input :remember_me, label: false, wrapper_html: { class: 'checkbox' }  do
       %label.checkbox-label
-        = f.check_box :remember_me,
-          hidden: 'true',
-          class: 'checkbox-input'
+        = f.input_field :remember_me,
+          class: 'checkbox-input',
+          type: 'checkbox',
+          hidden: true
         %span.checkbox-icon
           %i.fa.fa-check
-        %span.checkbox-text Remember me
+        %span.checkbox-text Remember Me
     .text-center
-      = f.submit 'Log In', class: 'btn btn-default mb-20'
+      = f.button :submit, 'Log In', class: 'btn btn-default mb-20'
   %p.general-sign-text.text-center
     Don’t have an Account?
     %a.in-gold-500{href: "#{ new_customer_registration_path }"} Sign Up

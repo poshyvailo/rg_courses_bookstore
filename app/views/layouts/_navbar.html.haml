@@ -59,9 +59,9 @@
               %a.dropdown-toggle{href: "#", 'data-toggle': "dropdown", role: "button", 'aria-haspopup': "true", 'aria-expanded': "false"} My account
               %ul.dropdown-menu
                 %li
-                  %a{href: "#"} Orders
+                  = link_to 'Orders', :customer_orders
                 %li
-                  = link_to 'Settings', :settings
+                  = link_to 'Settings', :customer_settings
                 %li.divider{role: "separator"}
                 %li
                   = link_to 'Log out', :destroy_customer_session, method: :delete

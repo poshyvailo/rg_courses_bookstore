@@ -1,5 +1,4 @@
-class CustomersController < ActionController::Base
-  layout 'application'
+class CustomersController < ApplicationController
   before_action :authenticate_customer!
 
   def index
