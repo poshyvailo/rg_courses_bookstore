@@ -1,5 +1,5 @@
 class Address < ApplicationRecord
-  validates :address, :zipcode, :city, :phone, presence: true
-  belongs_to :addressable, polymorphic: true
-  belongs_to :country
+  validates :firstname, :lastname, :address, :zipcode, :city, :country, :phone, presence: true
+  has_one :billable_orders, class_name: 'Customer', foreign_key: 'billing_address_id'
+  has_one :shippable_orders, class_name: 'Customer', foreign_key: 'shipping_address_id'
 end

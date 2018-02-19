@@ -4,6 +4,7 @@ class CustomersController < ApplicationController
   def show; end
 
   def change_email
+    current_customer.assign_attributes email_params
     if current_customer.update(email_params)
       redirect_to root_path
     end
@@ -18,6 +19,12 @@ class CustomersController < ApplicationController
     end
   end
 
+  def update_billing_address
+    if current_customer.billing_address.save(address_params)
+      redirect_to root_path
+    end
+  end
+
   private
 
   def email_params
@@ -26,5 +33,11 @@ class CustomersController < ApplicationController
 
   def password_params
     params.require(:customer).permit(:password, :password_confirmation, :current_password)
+  end
+
+  def address_params
+    params.require(:customer).permit(billing_address_attributes: [
+        :firstname, :lastname, :address, :zipcode, :city, :phone, :country, :id
+    ])
   end
 end

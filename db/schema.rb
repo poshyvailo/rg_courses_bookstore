@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180206170439) do
+ActiveRecord::Schema.define(version: 20180218191729) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -34,13 +34,11 @@ ActiveRecord::Schema.define(version: 20180206170439) do
     t.string "zipcode"
     t.string "city"
     t.string "phone"
-    t.bigint "country_id"
-    t.string "addressable_type"
-    t.bigint "addressable_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["addressable_type", "addressable_id"], name: "index_addresses_on_addressable_type_and_addressable_id"
-    t.index ["country_id"], name: "index_addresses_on_country_id"
+    t.string "firstname"
+    t.string "lastname"
+    t.string "country"
   end
 
   create_table "admin_users", force: :cascade do |t|
@@ -88,13 +86,6 @@ ActiveRecord::Schema.define(version: 20180206170439) do
     t.index ["title"], name: "index_categories_on_title", unique: true
   end
 
-  create_table "countries", force: :cascade do |t|
-    t.string "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["name"], name: "index_countries_on_name", unique: true
-  end
-
   create_table "credit_cards", force: :cascade do |t|
     t.string "firstname"
     t.string "lastname"
@@ -121,6 +112,8 @@ ActiveRecord::Schema.define(version: 20180206170439) do
     t.datetime "last_sign_in_at"
     t.inet "current_sign_in_ip"
     t.inet "last_sign_in_ip"
+    t.integer "billing_address_id"
+    t.integer "shipping_address_id"
     t.index ["email"], name: "index_customers_on_email", unique: true
     t.index ["reset_password_token"], name: "index_customers_on_reset_password_token", unique: true
   end
@@ -161,7 +154,6 @@ ActiveRecord::Schema.define(version: 20180206170439) do
     t.index ["customer_id"], name: "index_ratings_on_customer_id"
   end
 
-  add_foreign_key "addresses", "countries"
   add_foreign_key "books", "authors"
   add_foreign_key "books", "categories"
   add_foreign_key "credit_cards", "customers"
