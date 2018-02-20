@@ -30,7 +30,7 @@ class CustomersController < ApplicationController
     if @customer.update billing_address_params
       redirect_to root_path
     else
-      render "show"
+      render :show
     end
   end
 

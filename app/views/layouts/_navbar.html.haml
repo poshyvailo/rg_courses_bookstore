@@ -44,17 +44,7 @@
             %a.dropdown-toggle{ href: '#', 'data-toggle': 'dropdown', role: 'button',
               'aria-haspopup': 'true', 'aria-expanded': 'false'}
               = t(:menu_catalog)
-            %ul.dropdown-menu
-              %li
-                %a{ href: '#' } Mobile development
-              %li
-                %a{ href: '#' } Photo
-              %li
-                %a{ href: '#' } Web design
-              %li.divider{ role: 'separator' }
-              %li
-                %a{ href: '#' }
-                  = t(:log_out)
+            = render 'layouts/categories_submenu'
           - unless customer_signed_in?
             %li
               = link_to t(:sign_up), :new_customer_registration
