@@ -13,6 +13,7 @@ Rails.application.routes.draw do
       put 'change_password'
       put 'remove_account'
       put 'update_billing_address'
+      put 'update_shipping_address'
     end
   end
 

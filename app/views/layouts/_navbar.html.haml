@@ -1,67 +1,75 @@
 %header.navbar.navbar-default
   .container
     .navbar-header
-      %button.navbar-toggle.pull-left{type: "button", 'data-toggle': "collapse", 'data-target': "#navbar"}
+      %button.navbar-toggle.pull-left{ type: 'button', 'data-toggle': 'collapse', 'data-target': '#navbar' }
         %span.sr-only
         %span.icon-bar
         %span.icon-bar
         %span.icon-bar
-      %a.navbar-brand Bookstore
-      %a.shop-link.pull-right.visible-xs{href: "#"}
+      %a.navbar-brand
+        = t(:shop_name)
+      %a.shop-link.pull-right.visible-xs{ href: '#' }
         %span.shop-icon
           %span.shop-quantity 3
-    %a.shop-link.pull-right.hidden-xs{href: "#"}
+    %a.shop-link.pull-right.hidden-xs{ href: '#' }
       %span.shop-icon
         %span.shop-quantity 3
-    #navbar.navbar-collapse.collapse.pl-30{'aria-expanded': "false"}
+    #navbar.navbar-collapse.collapse.pl-30{ 'aria-expanded': 'false' }
       .visible-xs
-        %button.close{type: "button", 'aria-label': "Close"}
-          %span{'aria-hidden': "true"} &times;
+        %button.close{type: 'button', 'aria-label': t(:close)}
+          %span{ 'aria-hidden': 'true' } &times;
         %ul.nav.navbar-nav
           %li
-            = link_to 'Home', :root
+            = link_to t(:menu_home), :root
           %li
-            %a{type: "button", 'data-toggle': "collapse", href: "#menu", 'aria-expanded': "false", 'aria-controls': "menu"} Shop
-            %ul#menu.collapse.list-unstyled.pl-30.mb-10{'aria-expanded': "false"}
+            %a{ type: 'button', 'data-toggle': 'collapse', href: '#menu',
+              'aria-expanded': 'false', 'aria-controls': 'menu' }
+              = t(:menu_catalog)
+            %ul#menu.collapse.list-unstyled.pl-30.mb-10{ 'aria-expanded': 'false' }
               %li
-                %a.collapse-link{href: "#"} Mobile development
+                %a.collapse-link{ href: '#' } Mobile development
               %li
-                %a.collapse-link{href: "#"} Photo
+                %a.collapse-link{ href: '#' } Photo
               %li
-                %a.collapse-link{href: "#"} Web design
+                %a.collapse-link{ href: '#' } Web design
           %li
-            = link_to 'Sign Up', :new_customer_registration
+            = link_to t(:sign_up), :new_customer_registration
           %li
-            = link_to 'Sign In', :new_customer_session
+            = link_to t(:sign_in), :new_customer_session
       .hidden-xs
         %ul.nav.navbar-nav
           %li
-            = link_to 'Home', :root
+            = link_to t(:menu_home), :root
           %li.dropdown
-            %a.dropdown-toggle{href: "#", 'data-toggle': "dropdown", role: "button", 'aria-haspopup': "true", 'aria-expanded': "false"} Shop
+            %a.dropdown-toggle{ href: '#', 'data-toggle': 'dropdown', role: 'button',
+              'aria-haspopup': 'true', 'aria-expanded': 'false'}
+              = t(:menu_catalog)
             %ul.dropdown-menu
               %li
-                %a{href: "#"} Mobile development
+                %a{ href: '#' } Mobile development
               %li
-                %a{href: "#"} Photo
+                %a{ href: '#' } Photo
               %li
-                %a{href: "#"} Web design
-              %li.divider{role: "separator"}
+                %a{ href: '#' } Web design
+              %li.divider{ role: 'separator' }
               %li
-                %a{href: "#"} Log out
+                %a{ href: '#' }
+                  = t(:log_out)
           - unless customer_signed_in?
             %li
-              = link_to 'Sign Up', :new_customer_registration
+              = link_to t(:sign_up), :new_customer_registration
             %li
-              = link_to 'Sign In', :new_customer_session
+              = link_to t(:sign_in), :new_customer_session
           - else
             %li.dropdown
-              %a.dropdown-toggle{href: "#", 'data-toggle': "dropdown", role: "button", 'aria-haspopup': "true", 'aria-expanded': "false"} My account
+              %a.dropdown-toggle{ href: '#', 'data-toggle': 'dropdown', role: 'button',
+                'aria-haspopup': 'true', 'aria-expanded': 'false'}
+                = t(:menu_account)
               %ul.dropdown-menu
                 %li
-                  = link_to 'Orders', :customer_orders
+                  = link_to t(:menu_orders), :customer_orders
                 %li
-                  = link_to 'Settings', :customer
-                %li.divider{role: "separator"}
+                  = link_to t(:menu_settings), :customer
+                %li.divider{ role: 'separator' }
                 %li
-                  = link_to 'Log out', :destroy_customer_session, method: :delete
+                  = link_to t(:log_out), :destroy_customer_session, method: :delete

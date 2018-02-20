@@ -1,4 +1,5 @@
 class CustomersController < ApplicationController
+
   before_action :authenticate_customer!
 
   def show
@@ -56,6 +57,12 @@ class CustomersController < ApplicationController
   def billing_address_params
     params.require(:customer).permit(
         billing_address_attributes: [:firstname, :lastname, :address, :zipcode, :city, :phone, :country, :id],
+    )
+  end
+
+  def shipping_address_params
+    params.require(:customer).permit(
+        shipping_address_attributes: [:firstname, :lastname, :address, :zipcode, :city, :phone, :country, :id],
     )
   end
 end

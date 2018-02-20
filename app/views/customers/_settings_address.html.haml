@@ -24,6 +24,7 @@
     .visible-xs.visible-sm
       %h3.general-subtitle.mt-0 Shipping Address
     = simple_form_for(current_customer,
+      url: update_shipping_address_customer_path,
       html: { method: 'PUT', class: 'general-form-md' }) do |f|
       = f.simple_fields_for :shipping_address do |sa|
         = sa.input :firstname

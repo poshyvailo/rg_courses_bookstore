@@ -1,7 +1,8 @@
 en:
-  sing_up: 'Sign Up'
+  sign_up: 'Sign Up'
   sign_in: 'Sign In'
   log_in: 'Log In'
+  log_out: 'Log Out'
   or: 'or'
   enter_email: 'Enter email'
   password: 'Password'
