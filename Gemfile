@@ -26,6 +26,10 @@ gem 'aasm', '~> 4.12', '>= 4.12.3'
 gem 'haml', '~> 5.0', '>= 5.0.4'
 gem 'simple_form', '~> 3.5'
 gem 'country_select', '~> 3.1', '>= 3.1.1'
+gem 'font-awesome-rails', '~> 4.7', '>= 4.7.0.3'
+gem 'jquery-rails', '~> 4.3', '>= 4.3.1'
+gem 'bootstrap-sass', '~> 3.3.7'
+
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]

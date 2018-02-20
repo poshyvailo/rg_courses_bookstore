@@ -4,25 +4,7 @@
     %a.general-login-icon{href: "#"}
       %i.fa.fa-facebook-official
     %p.general-login-text or
-  = simple_form_for(resource, as: resource_name, url: session_path(resource_name), :html => {:class => "general-form"}) do |f|
-    = f.input :email,
-      label: 'Enter Email',
-      placeholder: 'Enter email'
-    = f.input :password,
-      label: 'Password',
-      placeholder: 'Password'
-    %a.help-block.in-gold-500{href: "#{ new_customer_password_path }"} Forgot password?
-    = f.input :remember_me, label: false, wrapper_html: { class: 'checkbox' }  do
-      %label.checkbox-label
-        = f.input_field :remember_me,
-          class: 'checkbox-input',
-          type: 'checkbox',
-          hidden: true
-        %span.checkbox-icon
-          %i.fa.fa-check
-        %span.checkbox-text Remember Me
-    .text-center
-      = f.button :submit, 'Log In', class: 'btn btn-default mb-20'
+  = render 'devise/sessions/login_form'
   %p.general-sign-text.text-center
     Don’t have an Account?
     %a.in-gold-500{href: "#{ new_customer_registration_path }"} Sign Up

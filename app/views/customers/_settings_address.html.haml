@@ -9,8 +9,8 @@
     .visible-xs.visible-sm
       %h3.general-subtitle.mt-0 Billing Address
     = simple_form_for(current_customer,
-      url: customer_billing_address_index_path,
-      html: { method: 'POST', class: 'general-form-md' }) do |f|
+      url: update_billing_address_customer_path,
+      html: { method: 'PUT', class: 'general-form-md' }) do |f|
       = f.simple_fields_for :billing_address do |ba|
         = ba.input :firstname
         = ba.input :lastname
@@ -24,7 +24,7 @@
     .visible-xs.visible-sm
       %h3.general-subtitle.mt-0 Shipping Address
     = simple_form_for(current_customer,
-      html: { method: 'POST', class: 'general-form-md' }) do |f|
+      html: { method: 'PUT', class: 'general-form-md' }) do |f|
       = f.simple_fields_for :shipping_address do |sa|
         = sa.input :firstname
         = sa.input :lastname

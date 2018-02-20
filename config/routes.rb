@@ -3,17 +3,16 @@ Rails.application.routes.draw do
 
   ActiveAdmin.routes(self)
 
-  devise_for :customer, :path_names => { :sign_up => "register" }
+  devise_for :customer
 
 
   resource :customer, only: [:show] do
     resources :orders
-    resources :billing_address, only: [:create], controller: 'address', action: 'create_billing_address'
-    resources :shipping_address, only: [:create], controller: 'address'
     member do
       put 'change_email'
       put 'change_password'
       put 'remove_account'
+      put 'update_billing_address'
     end
   end
 

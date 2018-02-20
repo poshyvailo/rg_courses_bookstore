@@ -1,0 +1,11 @@
+en:
+  sing_up: 'Sign Up'
+  sign_in: 'Sign In'
+  log_in: 'Log In'
+  or: 'or'
+  enter_email: 'Enter email'
+  password: 'Password'
+  confirm_password: 'Confirm Password'
+  remember_me: 'Remember Me'
+  have_account: 'Have an Account?'
+  forgot_password: 'Forgot password?'

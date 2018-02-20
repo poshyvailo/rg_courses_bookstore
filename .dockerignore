@@ -4,3 +4,5 @@
 log/*
 tmp/*
 .idea
+# Ignore DB data
+/database

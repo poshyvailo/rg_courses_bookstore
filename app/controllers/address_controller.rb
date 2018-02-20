@@ -3,8 +3,10 @@ class AddressController < ApplicationController
   before_action :authenticate_customer!
 
   def create_billing_address
-    current_customer.assign_attributes address_params
-    if current_customer.save address_params
+    @user = current_customer
+    @user.assign_attributes address_params
+    address = @user.billing_address
+    if @user.valid? && @user.save
       redirect_to root_path
     else
       redirect_to customer_path
