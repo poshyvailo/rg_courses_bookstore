@@ -17,7 +17,10 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :books
+  resource :catalog, only: [:show] do
+    resources :category, only: [:show]
+    resources :book, only: [:show]
+  end
 
   root 'main#home'
 end

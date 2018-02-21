@@ -1,0 +1,6 @@
+.mb-120
+  - @books.each_slice(4).with_index do |books, index|
+    .row{ :class => ('mb-25' unless index < 1) }
+      - books.each do |book|
+        = render 'catalogs/book', book: book
+  = render 'catalogs/view_more'

@@ -1,15 +1,36 @@
 ActiveAdmin.register Book do
-# See permitted parameters documentation:
-# https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
-#
-permit_params :category_id, :title, :description, :price, :in_stock, :author_id
-#
-# or
-#
-# permit_params do
-#   permitted = [:permitted, :attributes]
-#   permitted << :other if params[:action] == 'create' && current_user.admin?
-#   permitted
-# end
+
+permit_params :title,
+              :description,
+              :price,
+              :in_stock,
+              :image,
+              :height,
+              :width,
+              :depth,
+              :year,
+              :material,
+              category_ids: [],
+              author_ids: []
+
+
+  form do |f|
+    f.semantic_errors *f.object.errors.keys
+    f.inputs 'New Book' do
+      f.input :title
+      f.input :description
+      f.input :price
+      f.input :in_stock
+      f.input :image
+      f.input :height
+      f.input :width
+      f.input :depth
+      f.input :year, as: :datepicker
+      f.input :material
+      f.input :category_ids, as: :check_boxes, collection: Category.all
+      f.input :author_ids, as: :check_boxes, collection: Author.all
+    end
+    f.actions
+  end
 
 end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180218191729) do
+ActiveRecord::Schema.define(version: 20180221093918) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -71,12 +71,32 @@ ActiveRecord::Schema.define(version: 20180218191729) do
     t.text "description"
     t.decimal "price", precision: 10, scale: 2
     t.integer "in_stock"
-    t.bigint "category_id"
-    t.bigint "author_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["author_id"], name: "index_books_on_author_id"
-    t.index ["category_id"], name: "index_books_on_category_id"
+    t.string "image"
+    t.decimal "height", precision: 10, scale: 2
+    t.decimal "width", precision: 10, scale: 2
+    t.decimal "depth", precision: 10, scale: 2
+    t.date "year"
+    t.string "material"
+  end
+
+  create_table "books_authors", force: :cascade do |t|
+    t.bigint "book_id", null: false
+    t.bigint "author_id", null: false
+    t.index ["author_id", "book_id"], name: "index_books_authors_on_author_id_and_book_id", unique: true
+    t.index ["author_id"], name: "index_books_authors_on_author_id"
+    t.index ["book_id", "author_id"], name: "index_books_authors_on_book_id_and_author_id", unique: true
+    t.index ["book_id"], name: "index_books_authors_on_book_id"
+  end
+
+  create_table "books_categories", force: :cascade do |t|
+    t.bigint "book_id", null: false
+    t.bigint "category_id", null: false
+    t.index ["book_id", "category_id"], name: "index_books_categories_on_book_id_and_category_id", unique: true
+    t.index ["book_id"], name: "index_books_categories_on_book_id"
+    t.index ["category_id", "book_id"], name: "index_books_categories_on_category_id_and_book_id", unique: true
+    t.index ["category_id"], name: "index_books_categories_on_category_id"
   end
 
   create_table "categories", force: :cascade do |t|
@@ -132,7 +152,7 @@ ActiveRecord::Schema.define(version: 20180218191729) do
   create_table "orders", force: :cascade do |t|
     t.decimal "total_price", precision: 10, scale: 2
     t.datetime "completed_date"
-    t.integer "state"
+    t.string "state"
     t.bigint "customer_id"
     t.bigint "credit_card_id"
     t.string "billing_address"
@@ -154,8 +174,10 @@ ActiveRecord::Schema.define(version: 20180218191729) do
     t.index ["customer_id"], name: "index_ratings_on_customer_id"
   end
 
-  add_foreign_key "books", "authors"
-  add_foreign_key "books", "categories"
+  add_foreign_key "books_authors", "authors"
+  add_foreign_key "books_authors", "books"
+  add_foreign_key "books_categories", "books"
+  add_foreign_key "books_categories", "categories"
   add_foreign_key "credit_cards", "customers"
   add_foreign_key "order_items", "books"
   add_foreign_key "order_items", "orders"

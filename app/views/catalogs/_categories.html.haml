@@ -1,0 +1,10 @@
+%ul.list-inline.pt-10.mb-25.mr-240
+  %li.mr-35
+    %a.filter-link{ href: catalog_url}
+      All
+      %span.badge.general-badge= Book.all.count
+  - categories.each do | category |
+    %li.mr-35
+      %a.filter-link{ href: catalog_category_path(category) }
+        = category.title
+        %span.badge.general-badge= category.books.count
