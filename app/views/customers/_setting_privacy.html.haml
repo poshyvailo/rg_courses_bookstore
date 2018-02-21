@@ -33,7 +33,7 @@
     %p.in-gold-500.font-18.mb-25 Remove Account
     = simple_form_for(current_customer,
       url: customer_registration_path,
-      html: { method: 'DELETE', id: 'remove-account' }) do |f|
+      html: { method: 'DELETE', id: 'remove-account', class: nil, id: 'remove-account' }) do |f|
       .general-settings-btn
         = f.button :submit, 'Please Remove My Account',
           class: 'btn mb-20',

@@ -1,0 +1,11 @@
+%main.container
+  = link_to :back, class: 'general-back-link' do
+    %i.fa.fa-long-arrow-left.mr-15
+    Back to results
+  .row
+    .col-sm-6
+      = render 'book/images', images: @book.images
+    .col-sm-6
+      = render 'book/description', book: @book
+  .mb-80
+    = render 'book/reviews', reviews: @book.reviews

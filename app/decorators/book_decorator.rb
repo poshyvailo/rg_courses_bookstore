@@ -5,4 +5,12 @@ class BookDecorator < ApplicationDecorator
     authors.map { |author| "#{author.firstname} #{author.lastname}" }.to_sentence
   end
 
+  def images
+
+  end
+
+  def reviews
+
+  end
+
 end

@@ -152,7 +152,7 @@ ActiveRecord::Schema.define(version: 20180221093918) do
   create_table "orders", force: :cascade do |t|
     t.decimal "total_price", precision: 10, scale: 2
     t.datetime "completed_date"
-    t.string "state"
+    t.integer "state"
     t.bigint "customer_id"
     t.bigint "credit_card_id"
     t.string "billing_address"
