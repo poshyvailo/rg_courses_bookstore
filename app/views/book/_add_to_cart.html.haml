@@ -1,0 +1,13 @@
+-#.col-xs-5.col-md-3
+-#  .input-group.general-position
+-#    %a.input-link{href: "#"}
+-#      %i.fa.fa-minus.line-height-40
+-#    %input.form-control.quantity-input{type: "text"}
+-#    %a.input-link{href: "#"}
+-#      %i.fa.fa-plus.line-height-40
+-#.col-xs-7.col-md-5
+-#  %button.btn.btn-default.pull-right.general-position Add to Cart
+
+= simple_form_for :order_item, url: catalog_book_order_path(book) do |f|
+  = f.submit 'Add to Cart'
+  = f.input :quantity

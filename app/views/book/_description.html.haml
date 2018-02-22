@@ -3,15 +3,7 @@
 .row
   .col-xs-12.col-md-4
     %p.h1.in-gold-500.mt-10 €32.90
-  .col-xs-5.col-md-3
-    .input-group.general-position
-      %a.input-link{href: "#"}
-        %i.fa.fa-minus.line-height-40
-      %input.form-control.quantity-input{type: "text"}
-      %a.input-link{href: "#"}
-        %i.fa.fa-plus.line-height-40
-  .col-xs-7.col-md-5
-    %button.btn.btn-default.pull-right.general-position Add to Cart
+  = render 'book/add_to_cart', book: book
 .general-info-wrap.divider-lg
   %p Description
   %p.lead.small.line-height-2
