@@ -4,6 +4,8 @@
     = render 'layouts/header'
   %body
     = render 'layouts/navbar'
-    = yield
+    %main.container
+      = render 'layouts/flash'
+      = yield
   %footer.navbar-inverse
     = render 'layouts/footer'

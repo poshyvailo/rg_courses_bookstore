@@ -1,2 +1,5 @@
-- if flash[:error]
-  %div= flash[:error]
+- flash.each do |key, value|
+  .alert{ class: "alert-#{key}"}
+    %a.close{ href: '#', 'data-dismiss' => 'alert'  } ×
+    %ul
+      %li= value

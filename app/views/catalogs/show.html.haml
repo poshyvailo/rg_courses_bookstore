@@ -1,24 +1,7 @@
-%main.container
-  %h1.general-title-margin Сatalog
-  .hidden-xs.clearfix
-    .dropdowns.pull-right
-      .dropdown.width-240
-        %a.dropdown-toggle.lead.small{href: "#", 'data-toggle': "dropdown", role: "button", 'aria-haspopup': "true", 'aria-expanded': "false"}
-          Newest first
-          %i.fa.fa-angle-down.dropdown-icon.pull-right
-        %ul.dropdown-menu
-          %li
-            %a{href: "#"} Newest first
-          %li
-            %a{href: "#"} Popular first
-          %li
-            %a{href: "#"} Price: Low to hight
-          %li
-            %a{href: "#"} Price: Low to hight
-    = render 'catalogs/categories'
-  .dropdowns.mb-25.visible-xs
-    %p.lead.small.mb-10 Filter by category
-    .dropdown
+%h1.general-title-margin Сatalog
+.hidden-xs.clearfix
+  .dropdowns.pull-right
+    .dropdown.width-240
       %a.dropdown-toggle.lead.small{href: "#", 'data-toggle': "dropdown", role: "button", 'aria-haspopup': "true", 'aria-expanded': "false"}
         Newest first
         %i.fa.fa-angle-down.dropdown-icon.pull-right
@@ -31,18 +14,34 @@
           %a{href: "#"} Price: Low to hight
         %li
           %a{href: "#"} Price: Low to hight
-    %p.lead.small.mb-10 Sort by
-    .dropdown
-      %a.dropdown-toggle.lead.small{href: "#", 'data-toggle': "dropdown", role: "button", 'aria-haspopup': "true", 'aria-expanded': "false"}
-        Newest first
-        %i.fa.fa-angle-down.dropdown-icon.pull-right
-      %ul.dropdown-menu
-        %li
-          %a{href: "#"} Newest first
-        %li
-          %a{href: "#"} Popular first
-        %li
-          %a{href: "#"} Price: Low to hight
-        %li
-          %a{href: "#"} Price: Low to hight
-  = render 'catalogs/books'
+  = render 'catalogs/categories'
+.dropdowns.mb-25.visible-xs
+  %p.lead.small.mb-10 Filter by category
+  .dropdown
+    %a.dropdown-toggle.lead.small{href: "#", 'data-toggle': "dropdown", role: "button", 'aria-haspopup': "true", 'aria-expanded': "false"}
+      Newest first
+      %i.fa.fa-angle-down.dropdown-icon.pull-right
+    %ul.dropdown-menu
+      %li
+        %a{href: "#"} Newest first
+      %li
+        %a{href: "#"} Popular first
+      %li
+        %a{href: "#"} Price: Low to hight
+      %li
+        %a{href: "#"} Price: Low to hight
+  %p.lead.small.mb-10 Sort by
+  .dropdown
+    %a.dropdown-toggle.lead.small{href: "#", 'data-toggle': "dropdown", role: "button", 'aria-haspopup': "true", 'aria-expanded': "false"}
+      Newest first
+      %i.fa.fa-angle-down.dropdown-icon.pull-right
+    %ul.dropdown-menu
+      %li
+        %a{href: "#"} Newest first
+      %li
+        %a{href: "#"} Popular first
+      %li
+        %a{href: "#"} Price: Low to hight
+      %li
+        %a{href: "#"} Price: Low to hight
+= render 'catalogs/books'

@@ -7,7 +7,7 @@ Rails.application.routes.draw do
 
 
   resource :customer, only: [:show] do
-    resources :orders
+    resources :orders, only: [:index, :show]
     member do
       put 'change_email'
       put 'change_password'
