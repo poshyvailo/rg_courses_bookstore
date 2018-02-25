@@ -1,5 +1,6 @@
 class MainController < ApplicationController
   def home
-    # @categories = Category.all.title
+    @carousel = Book.created_desc.limit(3).decorate
+    @bestseller = Book.order("RANDOM()").limit(4).decorate
   end
 end

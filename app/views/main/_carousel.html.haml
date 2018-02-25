@@ -1,0 +1,13 @@
+#slider.carousel.slide{ 'data-ride': 'carousel' }
+  %ol.carousel-indicators
+    - items.each_index do |index|
+      %li{ 'data-target': '#slider', 'data-slide-to': index, class: ('active' if index == 0) }
+  .carousel-inner{ role: 'listbox' }
+    - items.each_with_index do |item, index|
+      = render 'main/carousel_item', book: item, active: ('active' if index == 0)
+  %a.left.carousel-control{ href: '#slider', role: 'button', 'data-slide': 'prev' }
+    %span.icon-prev{ 'aria-hidden': 'true' }
+    %span.sr-only Previous
+  %a.right.carousel-control{ href: '#slider', role: 'button', 'data-slide': 'next' }
+    %span.icon-next{ 'aria-hidden': 'true' }
+    %span.sr-only Next

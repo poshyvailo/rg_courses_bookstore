@@ -20,4 +20,9 @@ class Book < ApplicationRecord
                 greater_than_or_equal_to: 0,
                 allow_nil: true
             }
+
+  scope :created_asc, -> { order(created_at: :asc) }
+  scope :created_desc, -> { order(created_at: :desc) }
+  scope :price_asc, -> { order(price: :asc) }
+  scope :price_desc, -> { order(price: :desc) }
 end
