@@ -9,12 +9,7 @@ class BookDecorator < ApplicationDecorator
     "H: #{width}\" x W: #{height}\" x D: #{depth}\""
   end
 
-  def images
-
+  def price_in_euro
+    "€#{price}"
   end
-
-  def reviews
-
-  end
-
 end

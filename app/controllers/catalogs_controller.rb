@@ -3,8 +3,6 @@ class CatalogsController < ApplicationController
   decorates_assigned :book
 
   def show
-    @books = Book.page(params[:page]).decorate
-    # source = Book.all.decorate
-    # @books = BookDecorator.new(source)
+    @books = Book.sorting(params.slice(:price_sort, :created_sort)).page(params[:page]).decorate
   end
 end

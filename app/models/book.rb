@@ -1,5 +1,7 @@
 class Book < ApplicationRecord
 
+  include Sortable
+
   has_many :books_author, dependent: :destroy
   has_many :authors, through: :books_author
 
@@ -21,8 +23,6 @@ class Book < ApplicationRecord
                 allow_nil: true
             }
 
-  scope :created_asc, -> { order(created_at: :asc) }
-  scope :created_desc, -> { order(created_at: :desc) }
-  scope :price_asc, -> { order(price: :asc) }
-  scope :price_desc, -> { order(price: :desc) }
+  scope :price_sort, -> (value) { order(price: value) }
+  scope :created_sort, -> (value) { order(created_at: value) }
 end
