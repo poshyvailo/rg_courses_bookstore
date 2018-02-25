@@ -12,4 +12,12 @@ class BookDecorator < ApplicationDecorator
   def price_in_euro
     "€#{price}"
   end
+
+  def images
+
+  end
+
+  def reviews
+
+  end
 end

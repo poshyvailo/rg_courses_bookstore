@@ -1,6 +1,7 @@
 class Book < ApplicationRecord
-
   include Sortable
+
+  mount_uploader :image, ImageUploader
 
   has_many :books_author, dependent: :destroy
   has_many :authors, through: :books_author
