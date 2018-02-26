@@ -39,6 +39,7 @@ group :development, :test do
   gem 'ffaker', '~> 2.8', '>= 2.8.1'
   gem 'rubocop', '~> 0.52.1'
   gem 'shoulda', '~> 3.5'
+  gem 'listen'
 end
 
 group :development do

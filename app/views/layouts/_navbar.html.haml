@@ -10,10 +10,10 @@
         = t(:shop_name)
       %a.shop-link.pull-right.visible-xs{ href: cart_path }
         %span.shop-icon
-          %span.shop-quantity 0
+          %span.shop-quantity= cart_count_items
     %a.shop-link.pull-right.hidden-xs{ href: cart_path }
       %span.shop-icon
-        %span.shop-quantity 0
+        %span.shop-quantity= cart_count_items
     #navbar.navbar-collapse.collapse.pl-30{ 'aria-expanded': 'false' }
       .visible-xs
         %button.close{type: 'button', 'aria-label': t(:close)}

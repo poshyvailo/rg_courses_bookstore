@@ -18,12 +18,11 @@ Rails.application.routes.draw do
 
   resource :catalog, only: [:show] do
     resources :category, only: [:show]
-    resources :book, only: [:show] do
-      post 'order', to: 'order_item#create'
-    end
+    resources :book, only: [:show]
   end
 
   resource :cart, only: [:show]
+  resources :order_item, only: [:create, :update]
 
   root 'main#home'
 end

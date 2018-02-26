@@ -1,6 +1,8 @@
 class CartsController < ApplicationController
+
+  include OrderOperation
+
   def show
-    order_id = cookies.encrypted[:order_id]
-    @items = Order.find(order_id).order_items
+    @order = current_order.decorate
   end
 end

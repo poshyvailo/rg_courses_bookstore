@@ -1,35 +1,25 @@
 class OrderItemController < ApplicationController
+
+  include OrderOperation
+  include OrderItemOperation
+
   def create
-
-    logger.debug "Find book by id"
-    book = Book.find(params[:book_id])
-    logger.debug "Get order_id"
-    order_id = get_order
-    logger.debug "order_id = #{order_id}"
-    order_item = OrderItem.new(order_item_params)
-    order_item.book = book
-    order_item.price = book.price * order_item.quantity
-    order_item.order = order_id
-    order_item.save
-
-    logger.debug "Save to cookie"
-    cookies.encrypted[:order_id] = {
-        :value => order_id.id,
-        :expires => 30.days.from_now
-    }
+    book_id = params[:order_item][:book_id]
+    book_in_order?(book_id) ? change_item_quantity(book_id, params[:order_item][:quantity].to_i) : create_new_order_item(order_item_params)
+    redirect_to  catalog_book_path(params[:order_item][:book_id]), notice: 'Book added to cart'
   end
 
-  def delete
-
-  end
-
-  def order_item_params
-    params.require(:order_item).permit(:quantity)
+  def update
+    delete_item(params) if params.has_key? :delete
+    increment_item(params) if params.has_key? :plus
+    decrement_item(params) if params.has_key? :minus
+    redirect_to cart_path
   end
 
   private
 
-  def get_order
-    Order.find_or_create_by!(id: cookies.encrypted[:order_id])
+  def order_item_params
+    params.require(:order_item).permit(:quantity, :book_id, :price)
   end
+
 end

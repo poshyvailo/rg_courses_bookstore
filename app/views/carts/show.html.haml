@@ -1,7 +1,7 @@
 .general-main-wrap
   %h1.general-title-margin Cart
   .visible-xs
-    - @items.each do |item|
+    - @order.items.each do |item|
       = render 'carts/item_xs', item: item
   .hidden-xs
     %table.table.table-hover
@@ -16,7 +16,7 @@
         %th.col-total
           %span.in-grey-600 SubTotal
         %th.col-close
-      - @items.each do |item|
+      - @order.items.each do |item|
         = render 'carts/item', item: item
   .general-order-wrap
     .row
@@ -35,7 +35,7 @@
               %td
                 %p.font-16 Subtotal:
               %td
-                %p.font-16 €117.69
+                %p.font-16= @order.sub_total
             %tr
               %td
                 %p.font-16 Coupon:
@@ -45,6 +45,6 @@
               %td
                 %strong.font-18 Order Total:
               %td
-                %strong.font-18 €117.69
+                %strong.font-18= @order.total
           %button.btn.btn-default.mb-20.visible-xs-inline-block Checkout
   %button.btn.btn-default.mb-20.hidden-xs.center-block Checkout

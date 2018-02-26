@@ -2,7 +2,7 @@
 %p.lead.small= book.authors_list
 .row
   .col-xs-12.col-md-4
-    %p.h1.in-gold-500.mt-10 €32.90
+    %p.h1.in-gold-500.mt-10= book.price_in_euro
   = render 'book/add_to_cart', book: book
 .general-info-wrap.divider-lg
   %p Description
