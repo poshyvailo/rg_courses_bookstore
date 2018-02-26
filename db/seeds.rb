@@ -1,9 +1,9 @@
 require 'database_cleaner'
 require 'csv'
 
-DatabaseCleaner.clean_with(:truncation)
+DatabaseCleaner.clean_with(:truncation) if Rails.env.development?
 
-AdminUser.create(email: 'admin@example.com', password: 'password', password_confirmation: 'password') if Rails.env.development?
+AdminUser.create(email: 'admin@example.com', password: 'password', password_confirmation: 'password')
 
 CSV.read(File.expand_path('db/seeds/categories.csv')).each do |category|
   Category.create(title: category[0])
