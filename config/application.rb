@@ -21,7 +21,6 @@ module App
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 5.1
     config.i18n.load_path += Dir[Rails.root.join('config', 'locales', '**', '*.{rb,yml}')]
-    config.web_console.whitelisted_ips = '172.0.0.0/8'
     config.generators.system_tests = nil
     config.session_store :cookie_store, key: '_interslice_session'
     config.middleware.use ActionDispatch::Cookies # Required for all session management
