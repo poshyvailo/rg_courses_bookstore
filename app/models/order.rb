@@ -12,7 +12,7 @@ class Order < ApplicationRecord
 
   belongs_to :customer,  optional: true
   belongs_to :credit_card, optional: true
-  has_many :order_items
+  has_many :order_items, dependent: :delete_all
   has_one :billing_address, class_name: 'Address', as: :addressable
   has_one :shipping_address, class_name: 'Address', as: :addressable
 end

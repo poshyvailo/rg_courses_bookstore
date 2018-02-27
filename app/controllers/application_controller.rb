@@ -9,4 +9,9 @@ class ApplicationController < ActionController::Base
     set_user_to_order
     root_url
   end
+
+  def after_sign_out_path_for(resource)
+    delete_order_from_cookie
+    root_url
+  end
 end

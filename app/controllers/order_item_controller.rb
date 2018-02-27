@@ -5,8 +5,9 @@ class OrderItemController < ApplicationController
 
   def create
     book_id = params[:order_item][:book_id]
-    book_in_order?(book_id) ? change_item_quantity(book_id, params[:order_item][:quantity].to_i) : create_new_order_item(order_item_params)
-    redirect_to  catalog_book_path(params[:order_item][:book_id]), notice: 'Book added to cart'
+    quantity = params[:order_item][:quantity].to_i
+    book_in_order?(book_id) ? change_item_quantity(book_id, quantity) : create_new_order_item(order_item_params)
+    redirect_to  catalog_book_path(book_id), notice: 'Book added to cart'
   end
 
   def update

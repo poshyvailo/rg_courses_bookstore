@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180221093918) do
+ActiveRecord::Schema.define(version: 20180227111811) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -152,7 +152,7 @@ ActiveRecord::Schema.define(version: 20180221093918) do
   create_table "orders", force: :cascade do |t|
     t.decimal "total_price", precision: 10, scale: 2
     t.datetime "completed_date"
-    t.integer "state"
+    t.string "state"
     t.bigint "customer_id"
     t.bigint "credit_card_id"
     t.string "billing_address"
@@ -180,7 +180,7 @@ ActiveRecord::Schema.define(version: 20180221093918) do
   add_foreign_key "books_categories", "categories"
   add_foreign_key "credit_cards", "customers"
   add_foreign_key "order_items", "books"
-  add_foreign_key "order_items", "orders"
+  add_foreign_key "order_items", "orders", on_delete: :cascade
   add_foreign_key "orders", "credit_cards"
   add_foreign_key "orders", "customers"
   add_foreign_key "ratings", "books"
