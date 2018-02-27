@@ -30,6 +30,7 @@ gem 'jquery-rails', '~> 4.3', '>= 4.3.1'
 gem 'bootstrap-sass', '~> 3.3.7'
 gem 'draper', '~> 3.0', '>= 3.0.1'
 gem 'web-console', '>= 3.3.0'
+gem 'wicked', '~> 1.3', '>= 1.3.2'
 
 
 group :development, :test do

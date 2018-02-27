@@ -46,5 +46,5 @@
                 %strong.font-18 Order Total:
               %td
                 %strong.font-18= @order.total
-          %button.btn.btn-default.mb-20.visible-xs-inline-block Checkout
-  %button.btn.btn-default.mb-20.hidden-xs.center-block Checkout
+          %a.btn.btn-default.mb-20.visible-xs-inline-block{ href: checkout_index_path} Checkout
+  %a.btn.btn-default.mb-20.hidden-xs.center-block{ href: checkout_index_path} Checkout
