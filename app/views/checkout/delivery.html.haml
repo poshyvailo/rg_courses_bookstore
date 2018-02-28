@@ -1,0 +1,25 @@
+%h1.general-title-margin Checkout
+= render 'checkout/progress'
+= simple_form_for(@order, url: wizard_path,
+  html: { method: 'PUT', class: ''}) do |f|
+  = render 'checkout/delivery_methods', f: f
+  .general-text-align
+    %p.in-gold-500.font-18 Order Summary
+    %table.general-summary-table
+      %tr
+        %td
+          %p.font-16 Subtotal:
+        %td
+          %p.font-16 €117.69
+      %tr
+        %td
+          %p.font-16 Coupon:
+        %td
+          %p.font-16 €0.00
+      %tr
+        %td
+          %strong.font-18 Order Total:
+        %td
+          %strong.font-18 €117.69
+  .text-center
+  = f.button :submit, 'Save and Continue', class: 'btn btn-default center-block mb-20'

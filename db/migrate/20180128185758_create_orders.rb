@@ -6,8 +6,8 @@ class CreateOrders < ActiveRecord::Migration[5.1]
       t.string :state
       t.references :customer, foreign_key: true
       t.references :credit_card, foreign_key: true
-      t.string :billing_address
-      t.string :shipping_address
+      t.integer :billing_address_id
+      t.integer :shipping_address_id
 
       t.timestamps
     end

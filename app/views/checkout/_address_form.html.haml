@@ -1,0 +1,13 @@
+.col-md-5.mb-40
+  .visible-xs.visible-sm
+    %h3.general-subtitle.mt-0= "#{type.capitalize} Address"
+  = simple_form_for(@order, url: wizard_path,
+    html: { method: 'PUT', class: 'general-form-md', id: "#{type}-address" }) do |f|
+    = f.simple_fields_for :"#{type}_address" do |ba|
+      = ba.input :firstname
+      = ba.input :lastname
+      = ba.input :address
+      = ba.input :zipcode
+      = ba.input :phone
+      = ba.input :city
+      = ba.input :country
