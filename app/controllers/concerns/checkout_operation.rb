@@ -16,7 +16,7 @@ module CheckoutOperation
 
     def set_order_step
       params[:order][:order_step] = step
-      params[:order][:order_step] = 'complete' if [:confirm, :complete].include? step
+      params[:order][:order_step] = 'complete' if confirm_step?
     end
 
     def order_step?
@@ -25,6 +25,22 @@ module CheckoutOperation
 
     def confirm_step?
       next_order_step == :confirm
+    end
+
+    def address_step?
+      step == :address
+    end
+
+    def delivery_step?
+      step == :delivery
+    end
+
+    def copy_billing_to_shipping
+      params[:order][:shipping_address_attributes] = params[:order][:billing_address_attributes]
+    end
+
+    def use_billing_address?
+      params[:use_billing_address]
     end
 
   end
