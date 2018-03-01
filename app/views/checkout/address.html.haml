@@ -1,5 +1,6 @@
 %h1.general-title-margin Checkout
 = render 'checkout/progress'
+= current_order.billing_address.errors.inspect
 = simple_form_for(@order, url: wizard_path,
   html: { method: 'PUT', class: ''}) do |f|
   %div.res-mb-100

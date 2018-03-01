@@ -1,25 +1,31 @@
 class CheckoutController < ApplicationController
   include Wicked::Wizard
+  include CheckoutOperation
 
-  steps :address, :delivery, :payment, :confirm, :complete
+  steps :address, :delivery, :payment, :confirm
 
   def update
     @order = current_order
+    set_order_step unless confirm_step?
+
     case step
       when :address
         copy_billing_to_shipping if params[:use_billing_address]
-        @order.update order_address_params
       when :delivery
         @delivery_methods = DeliveryMethod.all
-        @order.update order_delivery_params
-      when :payment
-        @order.update order_payment_params
     end
-    render_wizard @order
+    @order.update(order_params)
+    confirm_step? ? (redirect_to wizard_path(:confirm)) : render_wizard(@order)
   end
 
   def show
     @order = current_order
+    unless order_step == 'payment'
+      if next_order_step != step
+        jump_to(next_order_step)
+      end
+    end
+
     case step
       when :delivery
         @delivery_methods = DeliveryMethod.all
@@ -29,10 +35,13 @@ class CheckoutController < ApplicationController
 
   private
 
-  def order_address_params
+  def order_params
     params.require(:order).permit(
+        :order_step,
+        :delivery_method_id,
         billing_address_attributes: [:firstname, :lastname, :address, :zipcode, :city, :phone, :country, :id],
-        shipping_address_attributes: [:firstname, :lastname, :address, :zipcode, :city, :phone, :country, :id]
+        shipping_address_attributes: [:firstname, :lastname, :address, :zipcode, :city, :phone, :country, :id],
+        credit_card_attributes: [:firstname, :number, :cvv, :expiration_month],
     )
   end
 

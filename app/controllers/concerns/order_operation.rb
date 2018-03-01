@@ -13,7 +13,7 @@ module OrderOperation
     end
 
     def order_from_customer
-      current_customer.orders.where(state: :in_progress).first if current_customer
+      current_customer.orders.where(state: :in_progress).first unless current_customer.nil?
     end
 
     def new_order
@@ -46,14 +46,16 @@ module OrderOperation
 
     def create_new_order_item(params)
       order = current_order
-      order.save if order.new_record?
+      order.save(validate: false) if order.new_record?
       params[:order_id] = order.id
       OrderItem.create(params)
       save_order order.id
     end
 
     def set_user_to_order
-      order_from_customer.delete unless cookies.encrypted[:order_id].blank?
+      unless order_from_customer.nil? || cookies.encrypted[:order_id].blank?
+        order_from_customer.delete
+      end
       current_order.update(customer: current_customer) unless current_order.new_record?
     end
   end

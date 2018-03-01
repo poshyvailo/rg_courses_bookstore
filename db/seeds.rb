@@ -1,7 +1,9 @@
-# require 'database_cleaner'
+require 'database_cleaner'
 require 'csv'
 
-# DatabaseCleaner.clean_with(:truncation) if Rails.env.development?
+if Rails.env.development?
+  DatabaseCleaner.clean_with(:truncation)
+end
 
 AdminUser.create(email: 'admin@example.com', password: 'password', password_confirmation: 'password')
 
@@ -30,4 +32,8 @@ CSV.read(File.expand_path('db/seeds/books.csv')).each do |book|
               categories: Category.order("RANDOM()").limit(rand(1...3)),
               authors: Author.order("RANDOM()").limit(rand(1...3))
   )
+end
+
+CSV.read(File.expand_path('db/seeds/delivery_methods.csv')).each do |dm|
+  DeliveryMethod.create(name: dm[0], shipping_days: dm[1], price: dm[2])
 end
