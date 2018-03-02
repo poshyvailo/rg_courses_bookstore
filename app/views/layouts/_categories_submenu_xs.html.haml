@@ -1,0 +1,4 @@
+%ul#menu.collapse.list-unstyled.pl-30.mb-10{ 'aria-expanded': 'false' }
+  - categories.each do | category |
+    %li
+      = link_to "#{category.title}", catalog_category_path(category), class: 'collapse-link'

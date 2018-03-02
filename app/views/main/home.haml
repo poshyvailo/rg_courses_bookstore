@@ -1,13 +1,12 @@
-%main.container
-  = render 'main/carousel', items: @carousel
+= render 'main/carousel', items: @carousel
 .container
-  .jumbotron.text-center.mb-0
-    %h2.h1 Welcome to our amazing Bookstore!
-    .mb-res-50
-      %p We pore through hundreds of new books each month and select the five best we can find to share with our members.
-    %a.btn.btn-default Get Started
-  .mb-35
-    %h3 Best Sellers
-    .row
-      - @bestseller.each do |item|
-        = render 'main/bestseller_item', book: item
+.jumbotron.text-center.mb-0
+  %h2.h1= t(:'home.welcome_title')
+  .mb-res-50
+    %p= t(:'home.welcome_text')
+  %a.btn.btn-default{ href: catalog_url }= t(:'home.get_started')
+.mb-35
+  %h3= t(:'home.best_sellers')
+  .row
+    - @bestseller.each do |item|
+      = render 'main/bestseller_item', book: item

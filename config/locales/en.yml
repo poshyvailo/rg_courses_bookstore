@@ -1,2 +1,24 @@
 en:
-  hello: "Hello world"
+  general:
+    shop_name: 'Bookstore'
+    close: 'Close'
+  main_menu:
+    home: 'Home'
+    catalog: 'Shop'
+    account: 'Account'
+    orders: 'Orders'
+    settings: 'Settings'
+  auth:
+    sign_in: 'Sign In'
+    sign_up: 'Sign Up'
+    log_out: 'Log Out'
+  home:
+    welcome_title: 'Welcome to our amazing Bookstore!'
+    welcome_text: 'We pore through hundreds of new books each month and select the five best we can find to share with our members.'
+    buy_now: 'Buy Now'
+    get_started: 'Get Started'
+    best_sellers: 'Best Sellers'
+    carousel_next: 'Next'
+    carousel_prev: 'Previous'
+  flash:
+    added_book: 'Book added to cart'

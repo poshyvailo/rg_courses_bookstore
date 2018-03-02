@@ -7,7 +7,7 @@ class OrderItemController < ApplicationController
     book_id = params[:order_item][:book_id]
     quantity = params[:order_item][:quantity].to_i
     book_in_order?(book_id) ? change_item_quantity(book_id, quantity) : create_new_order_item(order_item_params)
-    redirect_to  catalog_book_path(book_id), notice: 'Book added to cart'
+    redirect_to  request.referrer, notice: t(:'flash.added_book')
   end
 
   def update

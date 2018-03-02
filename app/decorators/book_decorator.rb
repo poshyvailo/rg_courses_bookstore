@@ -21,6 +21,10 @@ class BookDecorator < ApplicationDecorator
     truncate(description, length: 100, separator: ' ')
   end
 
+  def carousel_description
+    truncate(description, length: 300, separator: ' ')
+  end
+
   def images
 
   end

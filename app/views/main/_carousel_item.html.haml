@@ -6,7 +6,14 @@
     .col-sm-7
       .mb-60
         %h1= book.title
-        %p.lead= book.description.split[0...25].push('...').join(' ')
+        %p.lead= book.carousel_description
         %p.lead.small= book.authors_list
-        .general-align
-          %a.btn.btn-default Buy Now
+        = simple_form_for :order_item,
+          url: order_item_index_path,
+          html: { class: false } do |f|
+          = f.hidden_field :book_id, value: book.id
+          = f.hidden_field :price, value: book.price
+          = f.hidden_field :quantity, value: 1
+          .general-align
+            = f.submit t(:'home.buy_now'), class: 'btn btn-default'
+            -#%a.btn.btn-default= t(:'home.buy_now')

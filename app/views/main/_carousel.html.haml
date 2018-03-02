@@ -7,7 +7,7 @@
       = render 'main/carousel_item', book: item, active: ('active' if index == 0)
   %a.left.carousel-control{ href: '#slider', role: 'button', 'data-slide': 'prev' }
     %span.icon-prev{ 'aria-hidden': 'true' }
-    %span.sr-only Previous
+    %span.sr-only= t(:'home.carousel_prev')
   %a.right.carousel-control{ href: '#slider', role: 'button', 'data-slide': 'next' }
     %span.icon-next{ 'aria-hidden': 'true' }
-    %span.sr-only Next
+    %span.sr-only= t(:'home.carousel_next')

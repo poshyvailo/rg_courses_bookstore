@@ -1,0 +1,17 @@
+%button.close{type: 'button', 'aria-label': t(:'general.close')}
+  %span{ 'aria-hidden': 'true' } &times;
+%ul.nav.navbar-nav
+  %li
+    = link_to t(:'main_menu.home'), :root
+  %li
+    %a{ type: 'button',
+        'data-toggle': 'collapse',
+        href: '#menu',
+        'aria-expanded': 'false',
+        'aria-controls': 'menu' }
+      = t(:'main_menu.catalog')
+    = render 'layouts/categories_submenu_xs'
+  %li
+    = link_to t(:'auth.sign_up'), :new_customer_registration
+  %li
+    = link_to t(:'auth.sign_in'), :new_customer_session
