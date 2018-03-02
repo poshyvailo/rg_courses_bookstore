@@ -5,19 +5,18 @@
     %p.h1.in-gold-500.mt-10= book.price_in_euro
   = render 'book/add_to_cart', book: book
 .general-info-wrap.divider-lg
-  %p Description
+  %p= t('book.description')
   %p.lead.small.line-height-2
     = book.short_description
-    -#%a.in-gold-500.ml-10{href: "#"} Read More
 .general-info-wrap.divider-lg
   .clearfix
-    %p.pull-left Year of publication
+    %p.pull-left= t('book.year')
     %p.lead.small.pull-right= book.year.to_time.year
 .general-info-wrap.divider-lg
   .clearfix
-    %p.pull-left Dimensions
+    %p.pull-left= t('book.dimensions')
     %p.lead.small.pull-right= book.dimension
 .general-info-wrap.divider-lg
   .clearfix
-    %p.pull-left Materials
+    %p.pull-left= t('book.materials')
     %p.lead.small.pull-right= book.material

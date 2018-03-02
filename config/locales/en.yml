@@ -30,5 +30,12 @@ en:
       older: 'Older first'
       price_asc: 'Price: Low to Hight'
       price_desc: 'Price: Hight to Low'
+  book:
+    back_link: 'Back to results'
+    description: 'Description'
+    year: 'Year of publication'
+    dimensions: 'Dimensions'
+    materials: 'Materials'
+    add_to_card: 'Add to Cart'
   flash:
     added_book: 'Book added to cart'

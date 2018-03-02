@@ -6,11 +6,11 @@
       .btn.btn-link.input-link{ onclick: "change_quantity('minus')" }
         %i.fa.fa-minus.line-height-40
       = f.input_field :quantity,
-        label: false,
-        value: 1,
-        class: 'form-control quantity-input'
+      label: false,
+      value: 1,
+      class: 'form-control quantity-input'
       .btn.btn-link.input-link{ onclick: "change_quantity('plus')" }
         %i.fa.fa-plus.line-height-40
   .col-xs-7.col-md-5
-    = f.submit 'Add to Cart', class: 'btn btn-default pull-right general-position'
+    = f.submit t('book.add_to_card'), class: 'btn btn-default pull-right general-position'
   = javascript_include_tag 'quantity-plus-minus.js'
