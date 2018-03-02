@@ -71,7 +71,7 @@ class CheckoutController < ApplicationController
   end
 
   def address_attributes
-    %i[firstname lastname address zipcode city phone country id]
+    %i[firstname lastname delivery_address zipcode city phone country id]
   end
 
   def credit_card_attributes

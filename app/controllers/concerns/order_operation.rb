@@ -56,7 +56,11 @@ module OrderOperation
       unless order_from_customer.nil? || cookies.encrypted[:order_id].blank?
         order_from_customer.delete
       end
-      current_order.update(customer: current_customer) unless current_order.new_record?
+      unless current_order.new_record?
+        order = current_order
+        order.customer = current_customer
+        order.save(validate: false)
+      end
     end
   end
 end

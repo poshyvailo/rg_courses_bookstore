@@ -6,6 +6,7 @@ class ApplicationController < ActionController::Base
   protected
 
   def after_sign_in_path_for(resource)
+    logger.debug "AFTRE SIGN IN"
     set_user_to_order
     root_url
   end

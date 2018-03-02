@@ -7,8 +7,16 @@ class OrderDecorator < ApplicationDecorator
     end
   end
 
+  def sub_total_in_euro
+    "€#{sub_total}"
+  end
+
   def total
     sub_total
+  end
+
+  def total_in_euro
+    "€#{total}"
   end
 
   def items

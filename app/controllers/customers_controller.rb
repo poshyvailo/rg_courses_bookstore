@@ -56,13 +56,13 @@ class CustomersController < ApplicationController
 
   def billing_address_params
     params.require(:customer).permit(
-        billing_address_attributes: [:firstname, :lastname, :address, :zipcode, :city, :phone, :country, :id],
+        billing_address_attributes: [:firstname, :lastname, :delivery_address, :zipcode, :city, :phone, :country, :id],
     )
   end
 
   def shipping_address_params
     params.require(:customer).permit(
-        shipping_address_attributes: [:firstname, :lastname, :address, :zipcode, :city, :phone, :country, :id],
+        shipping_address_attributes: [:firstname, :lastname, :delivery_address, :zipcode, :city, :phone, :country, :id],
     )
   end
 end

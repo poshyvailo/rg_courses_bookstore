@@ -1,6 +1,5 @@
 %h1.general-title-margin Checkout
 = render 'checkout/progress'
-= current_order.billing_address.errors.inspect
 = simple_form_for(@order, url: wizard_path,
   html: { method: 'PUT', class: ''}) do |f|
   %div.res-mb-100
@@ -15,24 +14,25 @@
         .visible-xs.visible-sm
           %h3.general-subtitle.mt-0 Billing Address
         = f.simple_fields_for :billing_address do |ba|
-          = ba.input :firstname
-          = ba.input :lastname
-          = ba.input :address
-          = ba.input :zipcode
-          = ba.input :phone
-          = ba.input :city
-          = ba.input :country
-      .col-md-5.mb-40
+          = ba.input :firstname, label: 'First Name'
+          = ba.input :lastname, label: 'Last Name'
+          = ba.input :delivery_address, label: 'Address'
+          = ba.input :city, label: 'City'
+          = ba.input :zipcode, label: 'Zip'
+          = ba.input :country, label: 'Country'
+          = ba.input :phone, label: 'Phone'
+      .col-md-5.col-md-offset-1.mb-60
         .visible-xs.visible-sm
           %h3.general-subtitle.mt-0 Shipping Address
-        = f.simple_fields_for :shipping_address do |sa|
-          = sa.input :firstname
-          = sa.input :lastname
-          = sa.input :address
-          = sa.input :zipcode
-          = sa.input :phone
-          = sa.input :city
-          = sa.input :country
+        #shipping-address
+          = f.simple_fields_for :shipping_address do |sa|
+            = sa.input :firstname, label: 'First Name'
+            = sa.input :lastname, label: 'Last Name'
+            = sa.input :delivery_address, label: 'Address'
+            = sa.input :city, label: 'City'
+            = sa.input :zipcode, label: 'Zip'
+            = sa.input :country, label: 'Country'
+            = sa.input :phone, label: 'Phone'
         .form-group.checkbox
           %label.checkbox-label
             %input.checkbox-input{type: "checkbox", name: :use_billing_address, hidden: "true"}
