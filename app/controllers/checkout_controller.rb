@@ -11,18 +11,16 @@ class CheckoutController < ApplicationController
 
     set_order_step if step == next_order_step
 
-    if address_step?
+    if current_step_address?
       copy_billing_to_shipping if use_billing_address?
     end
 
-    if confirm_step?
-      complete_order
-    end
+    complete_order if next_order_step_confirm?
 
-    load_delivery_methods if delivery_step?
+    load_delivery_methods if current_step_delivery?
     @order.update(order_params)
 
-    if @order.valid? && confirm_step?
+    if @order.valid? && next_order_step_confirm?
       redirect_to wizard_path(:confirm)
     else
       render_wizard(@order)
@@ -33,21 +31,38 @@ class CheckoutController < ApplicationController
     @order = Order.find(params[:order_id]).decorate
 
     unless params[:id] == 'wicked_finish'
-      unless confirm_step? && order_step != 'complete'
+      unless next_order_step_confirm? && order_step != 'complete'
         jump_to(next_order_step) if next_order_step != step
       end
     end
 
-    load_delivery_methods if delivery_step?
+    load_delivery_methods if current_step_delivery?
     render_wizard
   end
 
   private
 
+  def order_step
+    @order.order_step
+  end
+
+  def set_order_step
+    params[:order] ||= {}
+    params[:order][:order_step] = step
+  end
+
   def complete_order
     params[:order][:completed_date] = Time.now.to_date
     params[:order][:state] = :completed
     cookies.delete :order_id
+  end
+
+  def copy_billing_to_shipping
+    params[:order][:shipping_address_attributes] =params[:order][:billing_address_attributes]
+  end
+
+  def use_billing_address?
+    params[:use_billing_address]
   end
 
   def load_delivery_methods
@@ -68,14 +83,6 @@ class CheckoutController < ApplicationController
 
   def credit_card_attributes
     %i[firstname number cvv expiration_month]
-  end
-
-  def order_delivery_params
-    params.require(:order).permit(:delivery_method_id)
-  end
-
-  def order_payment_params
-    params.require(:order).permit(credit_card_attributes: [:firstname, :number, :cvv, :expiration_month])
   end
 
 end

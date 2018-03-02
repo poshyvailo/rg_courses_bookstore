@@ -2,46 +2,29 @@ module CheckoutOperation
   extend ActiveSupport::Concern
 
   included do
-    def order_step
-      @order.order_step
-    end
 
-    def next_order_step
-      order_step? && order_step != 'complete' ? steps[order_step_index.next] : steps.first
+    def order_step?
+      order_step.nil? ? false : true
     end
 
     def order_step_index
       steps.index(order_step.to_sym)
     end
 
-    def set_order_step
-      params[:order] ||= {}
-      params[:order][:order_step] = step
-      # params[:order][:order_step] = 'con' if confirm_step?
+    def next_order_step
+      order_step? ? steps[order_step_index.next] : steps.first
     end
 
-    def order_step?
-      order_step.nil? ? false : true
-    end
-
-    def confirm_step?
+    def next_order_step_confirm?
       next_order_step == :confirm
     end
 
-    def address_step?
+    def current_step_address?
       step == :address
     end
 
-    def delivery_step?
+    def current_step_delivery?
       step == :delivery
-    end
-
-    def copy_billing_to_shipping
-      params[:order][:shipping_address_attributes] = params[:order][:billing_address_attributes]
-    end
-
-    def use_billing_address?
-      params[:use_billing_address]
     end
 
   end
