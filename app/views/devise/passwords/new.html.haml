@@ -1,16 +1,16 @@
 .general-main-wrap
   .text-center
-    %h1.mb-30 Forgot your password?
-    %p.general-password-text We'll email you instructions on how to reset it
+    %h1.mb-30= t('auth.password_recovery.title')
+    %p.general-password-text= t('auth.password_recovery.text')
   = simple_form_for(resource, as: resource_name,
     url: password_path(resource_name),
     html: { class: 'general-form' }) do |f|
     = f.input :email,
       label: false,
       autofocus: true,
-      placeholder: 'Enter your email',
+      placeholder: t('auth.enter_email'),
       wrapper_html: { class: 'mb-25' }
-    = f.button :submit, 'Email Instructions',
+    = f.button :submit, t('auth.password_recovery.get_instruction_btn'),
       class: 'btn btn-default center-block mb-20'
     .text-center
-      %a.in-gold-500.mb-20{href: "#"} Cancel
+      %a.in-gold-500.mb-20{href: new_customer_session_path}= t('general.cancel')

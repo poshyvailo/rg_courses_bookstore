@@ -1,18 +1,18 @@
 = simple_form_for(resource, url: registration_path(resource)) do |f|
   = f.input :email,
-    label: t(:enter_email),
-    placeholder: t(:enter_email),
+    label: t('auth.enter_email'),
+    placeholder: t('auth.enter_email'),
     autocomplete: 'email',
     wrapper_html: { class: 'mb-30' }
   = f.input :password,
-    label: t(:password),
-    placeholder: t(:password),
+    label: t('auth.password'),
+    placeholder: t('auth.password'),
     autocomplete: 'off',
     wrapper_html: { class: 'mb-30' }
   = f.input :password_confirmation,
-    label: t(:confirm_password),
-    placeholder: t(:confirm_password),
+    label: t('auth.confirm_password'),
+    placeholder: t('auth.confirm_password'),
     autocomplete: 'off',
     wrapper_html: { class: 'mb-30' }
   .text-center
-    = f.button :submit, t(:sign_up), class: 'btn btn-default mb-20'
+    = f.button :submit, t('sign_up'), class: 'btn btn-default mb-20'

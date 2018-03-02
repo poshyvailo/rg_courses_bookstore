@@ -1,11 +1,11 @@
 .general-main-wrap
   .text-center
-    %h3.general-login-title= t(:sing_up)
+    %h3.general-login-title= t('auth.sign_up')
     %a.general-login-icon{href: "#"}
       %i.fa.fa-facebook-official
-    %p.general-login-text= t(:or)
+    %p.general-login-text= t('general.or')
   = render 'devise/registrations/register_form'
   %p.general-sign-text.text-center
-    = t(:have_account)
+    = t('auth.have_account')
     %a.in-gold-500{ href: "#{ new_customer_session_path }" }
-      = t(:sign_in)
+      = t('auth.sign_in')

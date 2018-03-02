@@ -2,6 +2,8 @@ en:
   general:
     shop_name: 'Bookstore'
     close: 'Close'
+    or: 'or'
+    cancel: 'Cancel'
   main_menu:
     home: 'Home'
     catalog: 'Shop'
@@ -12,6 +14,20 @@ en:
     sign_in: 'Sign In'
     sign_up: 'Sign Up'
     log_out: 'Log Out'
+    enter_email: 'Enter email'
+    password: 'Password'
+    confirm_password: 'Confirm Password'
+    remember_me: 'Remember Me'
+    have_account: 'Have an Account?'
+    dont_have_account: 'Don’t have an Account?'
+    forgot_password: 'Forgot password?'
+    password_recovery:
+      title: 'Forgot your password?'
+      text: 'We’ll email you instructions on how to reset it'
+      get_instruction_btn: 'Email Instructions'
+      set_new_password: 'Set new password'
+      enter_new_password: 'Type a new Password'
+      change_btn: 'Change'
   home:
     welcome_title: 'Welcome to our amazing Bookstore!'
     welcome_text: 'We pore through hundreds of new books each month and select the five best we can find to share with our members.'

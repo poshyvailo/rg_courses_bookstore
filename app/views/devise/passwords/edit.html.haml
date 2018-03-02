@@ -1,18 +1,18 @@
 .general-main-wrap
   .text-center
-    %h3.general-login-title Set new password
+    %h3.general-login-title= t('auth.password_recovery.set_new_password')
   = simple_form_for(resource, as: resource_name,
     url: password_path(resource_name),
     html: { method: :put, class: 'general-form'}) do |f|
     = f.hidden_field :reset_password_token
     = f.input :password,
-      label: 'Type a new Password',
+      label: t('auth.password_recovery.enter_new_password'),
       autofocus: true,
       autocomplete: 'off',
-      placeholder: 'Type a new Password'
+      placeholder: t('auth.password_recovery.enter_new_password')
     = f.input :password_confirmation,
-      label: 'Confirm Password',
+      label: t('auth.confirm_password'),
       autocomplete: 'off',
-      placeholder: 'Confirm Password'
-    = f.submit 'Change',
+      placeholder: t('auth.confirm_password')
+    = f.submit t('auth.password_recovery.change_btn'),
       class: 'btn btn-default center-block mb-20'

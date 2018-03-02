@@ -1,12 +1,12 @@
 = simple_form_for(resource, url: session_path(resource)) do |f|
   = f.input :email,
-    label: t(:enter_email),
-    placeholder: t(:enter_email)
+    label: t('auth.enter_email'),
+    placeholder: t('auth.enter_email')
   = f.input :password,
-    label: t(:password),
-    placeholder: t(:password)
+    label: t('auth.password'),
+    placeholder: t('auth.password')
   %a.help-block.in-gold-500{href: "#{ new_customer_password_path }"}
-    = t(:forgot_password)
+    = t('auth.forgot_password')
   = f.input :remember_me, label: false, wrapper_html: { class: 'checkbox' }  do
     %label.checkbox-label
       = f.input_field :remember_me,
@@ -16,6 +16,6 @@
       %span.checkbox-icon
         %i.fa.fa-check
       %span.checkbox-text
-        = t(:remember_me)
+        = t('auth.forgot_password')
   .text-center
     = f.button :submit, t(:log_in), class: 'btn btn-default mb-20'
