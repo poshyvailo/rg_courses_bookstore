@@ -13,6 +13,14 @@ class BookDecorator < ApplicationDecorator
     "€#{price}"
   end
 
+  def short_description
+    truncate(description, length: 500, separator: ' ', omission: '... ') { link_to "View More", "#" }
+   end
+
+  def very_short_description
+    truncate(description, length: 100, separator: ' ')
+  end
+
   def images
 
   end

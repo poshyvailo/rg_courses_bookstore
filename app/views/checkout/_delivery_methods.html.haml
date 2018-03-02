@@ -2,18 +2,18 @@
   %thead
     %tr
       %th.col-method
-        %span.in-grey-600.ml-40= t('delivery.method')
+        %span.in-grey-600.ml-40 Method
       %th
-        %span.in-grey-600= t('delivery.days')
+        %span.in-grey-600 Days
       %th
-        %span.in-grey-600= t('delivery.price')
+        %span.in-grey-600 Price
   %tbody
     = f.collection_radio_buttons :delivery_method_id, @delivery_methods, :id, :name do |b|
       %tr
         %td
           .form-group.radio.mt-0.mb-0
             = b.label(class: 'radio-label') do
-              = b.radio_button(class: 'radio-input', hidden: "true")
+              = b.radio_button(class: 'radio-input', hidden: 'true')
               %span.radio-icon
               %span.radio-text= b.text
         %td

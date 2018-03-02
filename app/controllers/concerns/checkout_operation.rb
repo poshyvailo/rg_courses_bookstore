@@ -7,7 +7,7 @@ module CheckoutOperation
     end
 
     def next_order_step
-      order_step? ? steps[order_step_index.next] : steps.first
+      order_step? && order_step != 'complete' ? steps[order_step_index.next] : steps.first
     end
 
     def order_step_index
@@ -15,6 +15,7 @@ module CheckoutOperation
     end
 
     def set_order_step
+      params[:order] ||= {}
       params[:order][:order_step] = step
       params[:order][:order_step] = 'complete' if confirm_step?
     end

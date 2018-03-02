@@ -12,6 +12,10 @@ class OrderDecorator < ApplicationDecorator
   end
 
   def items
-    order_items.order(:id).decorate
+    order_items
   end
+
+  decorates_association :shipping_address
+  decorates_association :billing_address
+  decorates_association :order_items
 end

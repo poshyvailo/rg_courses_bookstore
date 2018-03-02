@@ -3,11 +3,11 @@ class Order < ApplicationRecord
 
   aasm :column => :state do
     state :in_progress, initial: true
-    state :complited
+    state :completed
     state :shipped
 
-    event(:complited) { transitions from: [:in_progress], to: :complited }
-    event(:shipped) { transitions from: [:complited], to: :shipped }
+    event(:completed) { transitions from: [:in_progress], to: :completed }
+    event(:shipped) { transitions from: [:completed], to: :shipped }
   end
 
   has_many :order_items, dependent: :delete_all
