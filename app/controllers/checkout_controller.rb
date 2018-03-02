@@ -4,12 +4,12 @@ class CheckoutController < ApplicationController
 
   before_action :authenticate_customer!
 
-  steps :address, :delivery, :payment, :confirm
+  steps :address, :delivery, :payment, :confirm, :complete
 
   def update
-    @order = current_order.decorate
+    @order = Order.find(params[:order_id])
 
-    set_order_step
+    set_order_step if step == next_order_step
 
     if address_step?
       copy_billing_to_shipping if use_billing_address?
@@ -20,7 +20,6 @@ class CheckoutController < ApplicationController
     end
 
     load_delivery_methods if delivery_step?
-
     @order.update(order_params)
 
     if @order.valid? && confirm_step?
@@ -31,31 +30,24 @@ class CheckoutController < ApplicationController
   end
 
   def show
-    @order = current_order.decorate
+    @order = Order.find(params[:order_id]).decorate
 
     unless params[:id] == 'wicked_finish'
       unless confirm_step? && order_step != 'complete'
-        logger.debug "REDIRECT FROM SHOW"
-        logger.debug "#{confirm_step?}"
-        logger.debug "#{order_step == 'complete'}"
         jump_to(next_order_step) if next_order_step != step
       end
     end
 
     load_delivery_methods if delivery_step?
-
     render_wizard
   end
 
   private
 
   def complete_order
+    params[:order][:completed_date] = Time.now.to_date
     params[:order][:state] = :completed
     cookies.delete :order_id
-  end
-
-  def finish_wizard_path
-    root_path
   end
 
   def load_delivery_methods
@@ -64,7 +56,7 @@ class CheckoutController < ApplicationController
 
   def order_params
     params.require(:order).permit(:order_step,
-        :delivery_method_id, :customer_id, :state,
+        :delivery_method_id, :customer_id, :state, :completed_date,
         billing_address_attributes: address_attributes,
         shipping_address_attributes: address_attributes,
         credit_card_attributes: credit_card_attributes)

@@ -8,7 +8,7 @@
       %span.general-edit
         = link_to 'edit', wizard_path(:address)
       %br
-      = @order.shipping_address.address
+      = @order.shipping_address.delivery_address
       %br
       = @order.shipping_address.city
       %br
@@ -22,7 +22,7 @@
       %span.general-edit
         = link_to 'edit', wizard_path(:address)
       %br
-      = @order.billing_address.address.address
+      = @order.billing_address.delivery_address
       %br
       = @order.billing_address.city
       %br

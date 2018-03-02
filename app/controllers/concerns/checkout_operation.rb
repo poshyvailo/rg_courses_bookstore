@@ -3,7 +3,7 @@ module CheckoutOperation
 
   included do
     def order_step
-      current_order.order_step
+      @order.order_step
     end
 
     def next_order_step
@@ -17,7 +17,7 @@ module CheckoutOperation
     def set_order_step
       params[:order] ||= {}
       params[:order][:order_step] = step
-      params[:order][:order_step] = 'complete' if confirm_step?
+      # params[:order][:order_step] = 'con' if confirm_step?
     end
 
     def order_step?
