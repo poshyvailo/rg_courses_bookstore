@@ -4,10 +4,16 @@
       %img.img-shadow.general-thumbnail-img{src: book.image, alt: book.title}
       .thumb-hover
         .general-thumb-link-wrap
-          %a.thumb-hover-link{href: catalog_book_path(book)}
-            %i.fa.fa-eye.thumb-icon{'aria-hidden': "true"}
-          %a.thumb-hover-link{href: "#"}
-            %i.fa.fa-shopping-cart.thumb-icon
+          = simple_form_for :order_item,
+          url: order_item_index_path,
+          html: { class: false } do |f|
+            = f.hidden_field :book_id, value: book.id
+            = f.hidden_field :price, value: book.price
+            = f.hidden_field :quantity, value: 1
+            %a.btn.btn-link.thumb-hover-link{ href: catalog_book_path(book) }
+              %i.fa.fa-eye.thumb-icon
+            = button_tag class: 'thumb-hover-link btn-link' do
+              %i.fa.fa-shopping-cart.thumb-icon
   .general-thumb-info
     %p.title= book.title
     %p.font-16.in-gold-500= book.price_in_euro

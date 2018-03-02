@@ -20,5 +20,15 @@ en:
     best_sellers: 'Best Sellers'
     carousel_next: 'Next'
     carousel_prev: 'Previous'
+  catalog:
+    all: 'All'
+    title: 'Сatalog'
+    category_filter: 'Filter by category'
+    view_more: 'View More'
+    sort:
+      newest: 'Newest first'
+      older: 'Older first'
+      price_asc: 'Price: Low to Hight'
+      price_desc: 'Price: Hight to Low'
   flash:
     added_book: 'Book added to cart'

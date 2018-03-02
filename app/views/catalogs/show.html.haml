@@ -1,11 +1,11 @@
-%h1.general-title-margin Сatalog
+%h1.general-title-margin= t(:'catalog.title')
 .hidden-xs.clearfix
   .dropdowns.pull-right
     .dropdown.width-240
       = render 'catalogs/sort'
   = render 'catalogs/categories'
 .dropdowns.mb-25.visible-xs
-  %p.lead.small.mb-10 Filter by category
+  %p.lead.small.mb-10= t(:'catalog.category_filter')
   .dropdown
     = render 'catalogs/categories_xs'
   .dropdown
