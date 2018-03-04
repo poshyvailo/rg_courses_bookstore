@@ -31,6 +31,7 @@ gem 'bootstrap-sass', '~> 3.3.7'
 gem 'draper', '~> 3.0', '>= 3.0.1'
 gem 'web-console', '>= 3.3.0'
 gem 'wicked', '~> 1.3', '>= 1.3.2'
+gem 'jquery-inputmask-rails', '~> 2.5', '>= 2.5.5'
 
 
 group :development, :test do

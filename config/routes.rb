@@ -23,10 +23,9 @@ Rails.application.routes.draw do
 
   resource :cart, only: [:show]
   resources :order_item, only: [:create, :update]
-  # resources :checkout, only: %i(index show update)
 
-  resources :orders do
-    resources :checkout
+  resources :orders, only: [:index, :show] do
+    resources :checkout, only: [:index, :show, :update]
   end
 
   root 'main#home'

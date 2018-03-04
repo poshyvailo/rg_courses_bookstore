@@ -4,32 +4,17 @@
 = simple_form_for(@order, url: wizard_path,
   html: { method: 'PUT', class: 'max-600 mb-80'}) do |f|
   = f.simple_fields_for :credit_card do |cf|
-    = cf.input :number
+    = cf.input :number, placeholder: 'Card Number', label: 'Card Number'
     .row
       .col-sm-6
-        = cf.input :firstname
+        = cf.input :card_owner, label: 'Name on Card', placeholder: 'Name on Card'
       .col-sm-3
-        = cf.input :expiration_month
+        = cf.input :expiration, label: 'MM / YY', placeholder: 'MM / YY', as: :string
       .col-sm-3
-        = cf.input :cvv
-  -#.form-group.has-error
-  -#  %label.control-label.input-label{for: "cardNumber"} Card Number
-  -#  %input#cardNumber.form-control{type: "number", name: "cardnumber", placeholder: "Card Number"}
-  -#  %span.help-block Please enter a valid credit card number
-  -#.row
-  -#  .col-sm-6
-  -#    .form-group
-  -#      %label.control-label.input-label{for: "cardName"} Name on Card
-  -#      %input#cardName.form-control{type: "text", name: "ccname", placeholder: "Name on Card"}
-  -#  .col-sm-3
-  -#    .form-group
-  -#      %label.control-label.input-label{for: "firstName"} MM / YY
-  -#      %input#firstName.form-control{name: "exp-date", type: "text", placeholder: "MM / YY"}
-  -#  .col-sm-3
-  -#    .form-group.relative
-  -#      %label.control-label.input-label{for: "firstName"} CVV
-  -#      %input#firstName.form-control{name: "cvc", type: "number", placeholder: "CVV"}
-  -#      %i.fa.fa-question-circle.general-form-help
+        = cf.input :cvv, label: 'CVV', wrapper_html: { class: 'relative' } do
+          = cf.input_field :cvv, placeholder: 'CVV', class: 'form-control'
+          %i.fa.fa-question-circle.general-form-help{'data-toggle' => 'tooltip', 'data-placement' => 'top', title: '3-digest security code usually found on the back of your card. American Express cards have a 4-digest code located on the front' }
+  = javascript_include_tag 'delete_account.js'
   .general-text-align
     %p.in-gold-500.font-18 Order Summary
     %table.general-summary-table

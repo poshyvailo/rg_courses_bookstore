@@ -10,7 +10,19 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
-//= require turbolinks
+
 //= require jquery3
 //= require rails-ujs
 //= require bootstrap-sprockets
+//= require jquery.inputmask
+//= require jquery.inputmask.extensions
+//= require jquery.inputmask.numeric.extensions
+//= require jquery.inputmask.date.extensions
+
+$(function () {
+    $('[data-toggle="tooltip"]').tooltip();
+    $('[id*="expiration"]').inputmask({ mask: "99 / 99", "placeholder": "MM / YY" });
+    $('[id*="number"]').inputmask({ mask: "9999 9999 9999 9999", "placeholder": "*" });
+    $('[id*="phone"]').inputmask({ mask: "(999) 999-9999" })
+});
+

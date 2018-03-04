@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180302141426) do
+ActiveRecord::Schema.define(version: 20180303155102) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -107,16 +107,12 @@ ActiveRecord::Schema.define(version: 20180302141426) do
   end
 
   create_table "credit_cards", force: :cascade do |t|
-    t.string "firstname"
-    t.string "lastname"
+    t.string "card_owner"
     t.string "number"
     t.string "cvv", limit: 3
-    t.integer "expiration_month", limit: 2
-    t.integer "expiration_year", limit: 2
-    t.bigint "customer_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["customer_id"], name: "index_credit_cards_on_customer_id"
+    t.date "expiration"
   end
 
   create_table "customers", force: :cascade do |t|
@@ -186,7 +182,6 @@ ActiveRecord::Schema.define(version: 20180302141426) do
   add_foreign_key "books_authors", "books"
   add_foreign_key "books_categories", "books"
   add_foreign_key "books_categories", "categories"
-  add_foreign_key "credit_cards", "customers"
   add_foreign_key "order_items", "books"
   add_foreign_key "order_items", "orders", on_delete: :cascade
   add_foreign_key "orders", "credit_cards"

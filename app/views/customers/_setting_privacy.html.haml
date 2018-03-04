@@ -36,7 +36,7 @@
       html: { method: 'DELETE', id: 'remove-account', class: nil, id: 'remove-account' }) do |f|
       .general-settings-btn
         = f.button :submit, 'Please Remove My Account',
-          class: 'btn mb-20',
+          class: 'btn btn-default mb-20',
           disabled: true
       .form-group.checkbox.general-settings-checkbox
         %label.checkbox-label
@@ -44,4 +44,4 @@
           %span.checkbox-icon
             %i.fa.fa-check
           %span.checkbox-text I understand that all data will be lost
-    = javascript_include_tag "delete_account.js"
+    = javascript_include_tag 'delete_account.js'

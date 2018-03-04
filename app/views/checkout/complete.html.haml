@@ -2,12 +2,12 @@
 = render 'checkout/progress'
 .text-center.mb-40
   %h3.general-subtitle Thank You for your Order!
-  %p.fw-300 An order confirmation has been has been sent to John Doe0411@gmail.com
+  %p.fw-300= "An order confirmation has been has been sent to  #{@order.customer_name} #{@order.customer_email}"
 .row.mb-20
   .col-sm-6
     .visible-xs
-      %p.general-order-number.mb-0 Order #R25314582
-      %p.general-address.mb-30 October 29, 2016
+      %p.general-order-number.mb-0= "Order ##{@order.order_number}"
+      %p.general-address.mb-30= @order.order_date
     %p.general-address
       John Doe
       %span.general-edit edit
@@ -20,8 +20,8 @@
       %br
       Phone +16507599755
   .col-sm-6.hidden-xs.text-right
-    %p.general-order-number.mb-0 Order #R25314582
-    %p.general-address.mb-30 October 29, 2016
+    %p.general-order-number.mb-0= "Order ##{@order.order_number}"
+    %p.general-address.mb-30= @order.order_date
 .visible-xs
   .general-cart-item.divider-lg
     .general-img-wrap-table

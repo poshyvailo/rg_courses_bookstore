@@ -40,7 +40,7 @@
   .col-sm-3
     %h3.general-subtitle Payment Information
     %p.general-address
-      = @order.credit_card.number
+      = @order.hidden_credit_card
       %span.general-edit
         = link_to 'edit', wizard_path(:payment)
       %br
@@ -71,7 +71,12 @@
       %td
         %p.font-16 Subtotal:
       %td
-        %p.font-16 €117.69
+        %p.font-16= @order.sub_total_in_euro
+    %tr
+      %td
+        %p.font-16 Delivery:
+      %td
+        %p.font-16= @order.delivery_cost_in_euro
     %tr
       %td
         %p.font-16 Coupon:
@@ -81,7 +86,7 @@
       %td
         %strong.font-18 Order Total:
       %td
-        %strong.font-18 €117.69
+        %strong.font-18= @order.total_in_euro
 .text-center
   = simple_form_for(@order, url: wizard_path,
   html: { method: 'PUT', class: ''}) do |f|

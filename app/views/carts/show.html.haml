@@ -51,4 +51,4 @@
     .text-center
       %a.btn.btn-default.mb-20.hidden-xs{ href: order_checkout_index_path(current_order)}= t('cart.checkout_link')
 - else
-  %p empty cart
+  = render 'carts/empty_cart'

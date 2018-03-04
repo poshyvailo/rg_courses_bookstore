@@ -2,25 +2,23 @@ class CustomersController < ApplicationController
 
   before_action :authenticate_customer!
 
-  def show
-    @customer = current_customer
-  end
+  def show; end
 
   def change_email
-    @customer = current_customer
-    @customer.assign_attributes email_params
-    if @customer.update(email_params)
-      redirect_to root_path
+    current_customer.assign_attributes email_params
+    if current_customer.update(email_params)
+      redirect_to customer_path, notice: 'Email successfully changed'
+    else
+      render :show
     end
   end
 
   def change_password
-    @customer = current_customer
-    if @customer.update_with_password(password_params)
+    if current_customer.update_with_password(password_params)
       bypass_sign_in(current_customer)
-      redirect_to root_path
+      redirect_to customer_path, notice: 'Password successfully changed'
     else
-      render "show"
+      render :show
     end
   end
 
@@ -28,7 +26,7 @@ class CustomersController < ApplicationController
     @customer = current_customer
     address = @customer.billing_address
     if @customer.update billing_address_params
-      redirect_to root_path
+      redirect_to customer_path, notice: 'Billing address successfully changed'
     else
       render :show
     end
@@ -38,9 +36,9 @@ class CustomersController < ApplicationController
     @customer = current_customer
     address = @customer.shipping_address
     if @customer.update shipping_address_params
-      redirect_to root_path
+      redirect_to customer_path, notice: 'Shipping address successfully changed'
     else
-      render "show"
+      render :show
     end
   end
 

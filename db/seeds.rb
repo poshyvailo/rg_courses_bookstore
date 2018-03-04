@@ -27,7 +27,7 @@ CSV.read(File.expand_path('db/seeds/books.csv')).each do |book|
               height: book[5],
               depth: book[6],
               year: "#{book[7]}-1-1",
-              image: File.open(Rails.root + "public/uploads/#{book[8]}"),
+              image: File.open(Rails.root + "db/seeds/images/#{book[8]}"),
               in_stock: rand(0..100),
               categories: Category.order("RANDOM()").limit(rand(1...3)),
               authors: Author.order("RANDOM()").limit(rand(1...3))

@@ -15,7 +15,7 @@ class CheckoutController < ApplicationController
       copy_billing_to_shipping if use_billing_address?
     end
 
-    complete_order if next_order_step_confirm?
+    complete_order if step == :confirm
 
     load_delivery_methods if current_step_delivery?
     @order.update(order_params)
@@ -34,6 +34,11 @@ class CheckoutController < ApplicationController
       unless next_order_step_confirm? && order_step != 'complete'
         jump_to(next_order_step) if next_order_step != step
       end
+    end
+
+    if current_step_address?
+      @order.billing_address = current_customer.billing_address.dup if @order.billing_address.nil?
+      @order.shipping_address = current_customer.shipping_address.dup if @order.shipping_address.nil?
     end
 
     load_delivery_methods if current_step_delivery?
@@ -78,11 +83,11 @@ class CheckoutController < ApplicationController
   end
 
   def address_attributes
-    %i[firstname lastname delivery_address zipcode city phone country id]
+    %i[id firstname lastname delivery_address zipcode city phone country]
   end
 
   def credit_card_attributes
-    %i[firstname number cvv expiration_month]
+    %i[id card_owner number cvv expiration]
   end
 
 end

@@ -5,11 +5,11 @@
     url: :"update_#{type}_address_customer",
     html: { method: 'PUT', class: 'general-form-md', id: "#{type}-address" }) do |f|
     = f.simple_fields_for :"#{type}_address" do |ba|
-      = ba.input :firstname
-      = ba.input :lastname
-      = ba.input :delivery_address
-      = ba.input :zipcode
-      = ba.input :phone
-      = ba.input :city
-      = ba.input :country
+      = ba.input :firstname, label: 'First Name', placeholder: 'First Name'
+      = ba.input :lastname, label: 'Last Name', placeholder: 'Last Name'
+      = ba.input :delivery_address, label: 'Address', placeholder: 'Address'
+      = ba.input :city, label: 'City', placeholder: 'City'
+      = ba.input :zipcode, label: 'Zip', placeholder: 'Zip'
+      = ba.input :country, label: 'Country', prompt: 'Select a country'
+      = ba.input :phone, label: 'Phone', placeholder: 'Phone'
       = ba.button :submit, 'Save', class: 'btn btn-default'
