@@ -7,7 +7,7 @@ class CheckoutController < ApplicationController
   steps :address, :delivery, :payment, :confirm, :complete
 
   def update
-    @order = Order.find(params[:order_id])
+    @order = Order.find(params[:order_id]).decorate
 
     set_order_step if step == next_order_step
 
@@ -37,8 +37,14 @@ class CheckoutController < ApplicationController
     end
 
     if current_step_address?
-      @order.billing_address = current_customer.billing_address.dup if @order.billing_address.nil?
-      @order.shipping_address = current_customer.shipping_address.dup if @order.shipping_address.nil?
+      unless @order.billing_address_id
+        # @order.billing_address.destroy
+        @order.billing_address = current_customer.billing_address.dup
+      end
+      unless @order.shipping_address_id
+        # @order.shipping_address.destroy
+        @order.shipping_address = current_customer.shipping_address.dup
+      end
     end
 
     load_delivery_methods if current_step_delivery?
@@ -58,6 +64,7 @@ class CheckoutController < ApplicationController
 
   def complete_order
     params[:order][:completed_date] = Time.now.to_date
+    params[:order][:total_price] = @order.total
     params[:order][:state] = :completed
     cookies.delete :order_id
   end
@@ -76,7 +83,7 @@ class CheckoutController < ApplicationController
 
   def order_params
     params.require(:order).permit(:order_step,
-        :delivery_method_id, :customer_id, :state, :completed_date,
+        :delivery_method_id, :customer_id, :state, :completed_date, :total_price,
         billing_address_attributes: address_attributes,
         shipping_address_attributes: address_attributes,
         credit_card_attributes: credit_card_attributes)
