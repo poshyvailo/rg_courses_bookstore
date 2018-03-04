@@ -32,12 +32,11 @@ gem 'draper', '~> 3.0', '>= 3.0.1'
 gem 'web-console', '>= 3.3.0'
 gem 'wicked', '~> 1.3', '>= 1.3.2'
 gem 'jquery-inputmask-rails', '~> 2.5', '>= 2.5.5'
-
+gem 'database_cleaner', '~> 1.6', '>= 1.6.2'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'rspec-rails', '~> 3.7', '>= 3.7.2'
-  gem 'database_cleaner', '~> 1.6', '>= 1.6.2'
   gem 'factory_bot', '~> 4.8', '>= 4.8.2'
   gem 'ffaker', '~> 2.8', '>= 2.8.1'
   gem 'rubocop', '~> 0.52.1'

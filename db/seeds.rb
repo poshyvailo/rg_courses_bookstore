@@ -1,9 +1,7 @@
 require 'database_cleaner'
 require 'csv'
 
-if Rails.env.development?
-  DatabaseCleaner.clean_with(:truncation)
-end
+DatabaseCleaner.clean_with(:truncation)
 
 AdminUser.create(email: 'admin@example.com', password: 'password', password_confirmation: 'password')
 
