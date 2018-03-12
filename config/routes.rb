@@ -5,7 +5,7 @@ Rails.application.routes.draw do
 
   devise_for :customer
 
-  resource :customer, only: [:show] do
+  resource :customer, only: [:show, :update] do
     resources :orders, only: [:index, :show]
     member do
       put 'change_email'

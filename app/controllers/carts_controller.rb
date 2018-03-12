@@ -1,6 +1,6 @@
 class CartsController < ApplicationController
 
-  include OrderOperation
+  # include OrderOperation
 
   def show
     @order = current_order.decorate

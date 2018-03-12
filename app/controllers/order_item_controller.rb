@@ -1,6 +1,5 @@
 class OrderItemController < ApplicationController
 
-  include OrderOperation
   include OrderItemOperation
 
   def create

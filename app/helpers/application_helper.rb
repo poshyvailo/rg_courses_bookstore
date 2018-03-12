@@ -1,13 +1,13 @@
 module ApplicationHelper
 
-  include OrderOperation
+  include OrderConcern
 
   def categories
-    Category.all
+    @categories ||= Category.all
   end
 
   def cart_count_items
-    @order = current_order.order_items.count
+    @cart_count_items ||= current_order.order_items.count
   end
 
   def checkout_progress_bar

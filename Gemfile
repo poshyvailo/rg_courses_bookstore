@@ -33,13 +33,17 @@ gem 'web-console', '>= 3.3.0'
 gem 'wicked', '~> 1.3', '>= 1.3.2'
 gem 'jquery-inputmask-rails', '~> 2.5', '>= 2.5.5'
 gem 'database_cleaner', '~> 1.6', '>= 1.6.2'
+gem 'rectify', '~> 0.11.0'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'rspec-rails', '~> 3.7', '>= 3.7.2'
-  gem 'factory_bot', '~> 4.8', '>= 4.8.2'
+  gem 'factory_bot_rails', '~> 4.8', '>= 4.8.2'
   gem 'ffaker', '~> 2.8', '>= 2.8.1'
   gem 'rubocop', '~> 0.52.1'
+  gem 'rubycritic', '~> 3.3'
+  gem 'brakeman', '~> 4.2'
+  gem 'capybara', '~> 2.18'
   gem 'shoulda', '~> 3.5'
 end
 
