@@ -1,4 +1,5 @@
 class CreditCard < ApplicationRecord
+
   validates :card_owner, :number, :cvv, :expiration, presence: true
 
   def expiration=(date)

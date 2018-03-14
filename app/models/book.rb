@@ -26,4 +26,6 @@ class Book < ApplicationRecord
 
   scope :price_sort, -> (value) { order(price: value) }
   scope :created_sort, -> (value) { order(created_at: value) }
+  scope :slider, -> { order(created_at: :desc).includes(:authors).limit(3) }
+  scope :best_seller, -> { order("RANDOM()").includes(:authors).limit(4) }
 end

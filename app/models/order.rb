@@ -27,6 +27,8 @@ class Order < ApplicationRecord
 
   accepts_nested_attributes_for :shipping_address, :billing_address, :credit_card
 
+  scope :in_progress, -> { where(state: :in_progress) }
+
   def confirm?
     order_step == 'complete'
   end

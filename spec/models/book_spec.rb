@@ -8,7 +8,7 @@ RSpec.describe Book, type: :model do
   it do
     should validate_numericality_of(:in_stock).is_greater_than_or_equal_to(0)
   end
-  it { should belong_to(:author) }
-  it { should belong_to(:category) }
+  it { should have_many(:books_author) }
+  it { should have_many(:books_category) }
   it { should have_many(:rating) }
 end

@@ -7,6 +7,6 @@ RSpec.describe Order, type: :model do
   it { should belong_to(:customer) }
   it { should belong_to(:credit_card) }
   it { should have_many(:order_items) }
-  it { should have_one(:billing_address) }
-  it { should have_one(:shipping_address) }
+  it { should belongs_to(:billing_address) }
+  it { should belongs_to(:shipping_address) }
 end
