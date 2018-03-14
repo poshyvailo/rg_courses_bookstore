@@ -1,8 +1,8 @@
 class BookController  < ApplicationController
-
+  load_and_authorize_resource
   decorates_assigned :book
 
   def show
-    @book = Book.find(params[:id]).decorate
+    @book = @book.decorate
   end
 end

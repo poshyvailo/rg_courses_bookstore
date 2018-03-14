@@ -8,7 +8,7 @@ module ApplicationHelper
   end
 
   def cart_count_items
-    @cart_count_items ||= order_items.count
+    @cart_count_items ||= current_order.order_items.count
   end
 
   def checkout_progress_bar
