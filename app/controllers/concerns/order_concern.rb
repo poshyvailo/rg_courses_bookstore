@@ -32,11 +32,15 @@ module OrderConcern
 
     def merge_orders
       cookie_order = order_from_cookie
-      if cookie_order
+      if cookie_order && order_from_customer
         cookie_order.order_items.each do |order_item|
-          AddCartItem.call current_order, {quantity: order_item.quantity, book_id: order_item.book_id}
+          params = {quantity: order_item.quantity, book_id: order_item.book_id}
+          AddCartItem.call current_order, params
         end
         cookie_order.delete
+      else
+        current_order.customer = current_customer
+        current_order.save!(validate: false)
       end
     end
   end
