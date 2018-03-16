@@ -18,6 +18,7 @@ RSpec.configure do |config|
   end
 
   config.include FactoryBot::Syntax::Methods
+  config.include FeatureHelper, type: :feature
 
   config.before(:each) do
     DatabaseCleaner.start
