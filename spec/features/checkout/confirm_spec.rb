@@ -1,34 +1,19 @@
 require 'rails_helper'
 
-feature 'Checkout Payment step' do
+feature 'Checkout Confirm step' do
 
-  let(:customer) do
-    customer = create :customer_with_order
-    customer.orders.first.update({
-     billing_address: create(:address),
-     shipping_address: create(:address),
-     delivery_method: create(:delivery_method),
-     credit_card: create(:credit_card),
-     order_step: 'payment'
-    })
-    customer
-  end
+  let(:order) { create :order_confirm_step }
 
   background do
-    login_as customer, scope: :customer
+    login_as order.customer, scope: :customer
   end
 
   scenario 'Customer click "Place Order" button' do
 
   end
 
-
-  %i[address delivery confirm complete].each do |step|
-    scenario "Redirect to delivery step if customer try go to #{step.to_s} step" do
-      visit order_checkout_path(customer.orders.first, step)
-
-      expect(page).to have_current_path order_checkout_path(customer.orders.first, :payment)
-      expect(page).to have_content 'Credit Card'
-    end
+  scenario "Redirect to confirm step if customer try go to complete step" do
+    visit order_checkout_path(order, step)
+    expect(page).to have_current_path order_checkout_path(order, :confirm)
   end
 end

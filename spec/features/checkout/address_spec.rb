@@ -2,15 +2,15 @@ require 'rails_helper'
 
 feature 'Checkout Address step' do
 
-  let(:customer) { create :customer_with_order }
+  let(:order) { create :order_address_step }
   let(:address) { build :address }
 
   background do
-    login_as customer, scope: :customer
+    login_as order.customer, scope: :customer
   end
 
   scenario 'Customer correct fill address forms' do
-    visit order_checkout_path(customer.orders.first, :address)
+    visit order_checkout_path(order, :address)
 
     within '#addresses' do
       %w[billing shipping].each do |type|
@@ -25,16 +25,16 @@ feature 'Checkout Address step' do
       click_button('Save and Continue')
     end
 
-    expect(page).to have_current_path order_checkout_path(customer.orders.first, :delivery)
+    expect(page).to have_current_path order_checkout_path(order, :delivery)
     expect(page).to have_content 'Shipping Medhod'
   end
 
   scenario 'Customer incorrect fill address forms' do
-    visit order_checkout_path(customer.orders.first, :address)
+    visit order_checkout_path(order, :address)
 
     click_button('Save and Continue')
 
-    expect(page).to have_current_path order_checkout_path(customer.orders.first, :address)
+    expect(page).to have_current_path order_checkout_path(order, :address)
     expect(page).to have_content "Firstname can't be blank"
     expect(page).to have_content "Lastname can't be blank"
     expect(page).to have_content "Delivery address can't be blank"
@@ -45,7 +45,7 @@ feature 'Checkout Address step' do
   end
 
   scenario 'Customer use "Use Billing Address" checkbox' do
-    visit order_checkout_path(customer.orders.first, :address)
+    visit order_checkout_path(order, :address)
 
     within '#addresses' do
       %w[billing].each do |type|
@@ -61,15 +61,15 @@ feature 'Checkout Address step' do
       click_button('Save and Continue')
     end
 
-    expect(page).to have_current_path order_checkout_path(customer.orders.first, :delivery)
+    expect(page).to have_current_path order_checkout_path(order, :delivery)
     expect(page).to have_content 'Shipping Medhod'
   end
 
   %i[delivery payment confirm complete].each do |step|
     scenario "Redirect to address step if customer try go to #{step.to_s} step" do
-      visit order_checkout_path(customer.orders.first, step)
+      visit order_checkout_path(order, step)
 
-      expect(page).to have_current_path order_checkout_path(customer.orders.first, :address)
+      expect(page).to have_current_path order_checkout_path(order, :address)
       expect(page).to have_content 'Billing Address'
       expect(page).to have_content 'Shipping Address'
     end

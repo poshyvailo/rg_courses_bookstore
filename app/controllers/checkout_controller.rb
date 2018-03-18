@@ -31,7 +31,7 @@ class CheckoutController < ApplicationController
     @order = Order.find(params[:order_id]).decorate
 
     unless params[:id] == 'wicked_finish'
-      unless next_order_step_confirm? && order_step != 'complete'
+      unless next_order_step_confirm? && params[:id] != 'complete'
         jump_to(next_order_step) if next_order_step != step
       end
     end

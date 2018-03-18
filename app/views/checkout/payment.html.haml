@@ -2,7 +2,7 @@
 = render 'checkout/progress'
 %h3.general-subtitle Credit Card
 = simple_form_for(@order, url: wizard_path,
-  html: { method: 'PUT', class: 'max-600 mb-80'}) do |f|
+  html: { method: 'PUT', class: 'max-600 mb-80', id: 'credit-card'}) do |f|
   = f.simple_fields_for :credit_card do |cf|
     = cf.input :number, placeholder: 'Card Number', label: 'Card Number'
     .row

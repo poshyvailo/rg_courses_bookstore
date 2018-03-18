@@ -8,43 +8,35 @@ feature 'Checkout Delivery step' do
     end
   end
 
-  let(:customer) do
-    customer = create :customer_with_order
-    customer.orders.first.update({
-      billing_address: create(:address),
-      shipping_address: create(:address),
-      order_step: 'address'
-    })
-    customer
-  end
+  let(:order) { create :order_delivery_step }
 
   background do
-    login_as customer, scope: :customer
+    login_as order.customer, scope: :customer
   end
 
   scenario 'Customer select delivery method' do
-    visit order_checkout_path(customer.orders.first, :delivery)
+    visit order_checkout_path(order, :delivery)
 
     within '#delivery-methods' do
-      choose option: '2', visible: false
+      choose option: DeliveryMethod.first.id, visible: false
       click_button('Save and Continue')
     end
 
-    expect(page).to have_current_path order_checkout_path(customer.orders.first, :payment)
+    expect(page).to have_current_path order_checkout_path(order, :payment)
   end
 
   scenario 'Customer not select delivery method' do
-    visit order_checkout_path(customer.orders.first, :delivery)
+    visit order_checkout_path(order, :delivery)
     click_button('Save and Continue')
 
-    expect(page).to have_current_path order_checkout_path(customer.orders.first, :delivery)
+    expect(page).to have_current_path order_checkout_path(order, :delivery)
   end
 
   %i[address payment confirm complete].each do |step|
     scenario "Redirect to delivery step if customer try go to #{step.to_s} step" do
-      visit order_checkout_path(customer.orders.first, step)
+      visit order_checkout_path(order, step)
 
-      expect(page).to have_current_path order_checkout_path(customer.orders.first, :delivery)
+      expect(page).to have_current_path order_checkout_path(order, :delivery)
       expect(page).to have_content 'Shipping Medhod'
     end
   end

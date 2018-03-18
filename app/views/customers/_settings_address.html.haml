@@ -7,3 +7,6 @@
 .row
   = render 'customers/address_form', type: 'billing'
   = render 'customers/address_form', type: 'shipping'
+  = javascript_include_tag 'cleave/cleave.min.js'
+  = javascript_include_tag 'cleave/cleave-phone.i18n.js'
+  = javascript_include_tag 'phone.js'

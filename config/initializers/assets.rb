@@ -13,5 +13,5 @@ Rails.application.config.assets.paths << Rails.root.join('node_modules')
 # folder are already added.
 # Rails.application.config.assets.precompile += %w( admin.js admin.css )
 
-Rails.application.config.assets.precompile += %w( jquery.js bootstrap.js delete_account.js quantity-plus-minus.js )
+Rails.application.config.assets.precompile += %w( delete_account.js quantity-plus-minus.js credit_card.js phone.js cleave/cleave.min.js cleave/cleave-phone.i18n.js )
 Rails.application.config.assets.precompile += %w( style.css )

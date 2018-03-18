@@ -89,6 +89,6 @@
         %strong.font-18= @order.total_in_euro
 .text-center
   = simple_form_for(@order, url: wizard_path,
-  html: { method: 'PUT', class: ''}) do |f|
+  html: { method: 'PUT', class: '', id: 'confirm'}) do |f|
     = f.button :submit, 'Place Order', class: 'btn btn-default mb-20'
   -#%button.btn.btn-default.mb-20 Place Order
