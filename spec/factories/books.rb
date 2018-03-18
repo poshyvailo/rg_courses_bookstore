@@ -13,7 +13,7 @@ FactoryBot.define do
     description { FFaker::CheesyLingo.paragraph 90 }
 
     transient do
-      count_authors 2
+      count_authors 1
       count_categories 1
     end
 

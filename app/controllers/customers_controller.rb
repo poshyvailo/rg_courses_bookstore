@@ -24,7 +24,7 @@ class CustomersController < ApplicationController
 
   def update_billing_address
     @customer = current_customer
-    address = @customer.billing_address
+    logger.debug "#{params.inspect}"
     if @customer.update billing_address_params
       redirect_to customer_path, notice: 'Billing address successfully changed'
     else
@@ -34,7 +34,7 @@ class CustomersController < ApplicationController
 
   def update_shipping_address
     @customer = current_customer
-    address = @customer.shipping_address
+    logger.debug "#{params.inspect}"
     if @customer.update shipping_address_params
       redirect_to customer_path, notice: 'Shipping address successfully changed'
     else

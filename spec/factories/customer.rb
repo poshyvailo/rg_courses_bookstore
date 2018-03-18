@@ -7,9 +7,10 @@ FactoryBot.define do
 
     factory :customer_with_order do
       after(:create) do |customer|
-        order = create :order_with_items
+        order = create :order
+        order.order_items << create(:order_item)
         order.customer = customer
-        order.save
+        order.save(validate: false)
       end
     end
   end

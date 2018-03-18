@@ -49,6 +49,6 @@
                   %strong.font-18= @order.total_in_euro
             %a.btn.btn-default.mb-20.visible-xs-inline-block{ href: order_checkout_index_path(current_order)}= t('cart.checkout_link')
     .text-center
-      %a.btn.btn-default.mb-20.hidden-xs{ href: order_checkout_index_path(current_order)}= t('cart.checkout_link')
+      %a#checkout-btn-xs.btn.btn-default.mb-20.hidden-xs{ href: order_checkout_index_path(current_order)}= t('cart.checkout_link')
 - else
   = render 'carts/empty_cart'

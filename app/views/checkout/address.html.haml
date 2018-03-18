@@ -1,7 +1,7 @@
 %h1.general-title-margin Checkout
 = render 'checkout/progress'
 = simple_form_for(@order, url: wizard_path,
-  html: { method: 'PUT', class: ''}) do |f|
+  html: { method: 'PUT', class: '', id: 'addresses'}) do |f|
   %div.res-mb-100
     .hidden-xs.hidden-sm
       .row

@@ -6,8 +6,4 @@ module FeatureHelper
     click_button('Sign In')
     visit(location) if location
   end
-
-  def numerify(mask = '##.##')
-    FFaker.numerify mask
-  end
 end

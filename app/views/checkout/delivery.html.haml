@@ -1,7 +1,8 @@
 %h1.general-title-margin Checkout
 = render 'checkout/progress'
+%h3.general-subtitle Shipping Medhod
 = simple_form_for(@order, url: wizard_path,
-  html: { method: 'PUT', class: ''}) do |f|
+  html: { method: 'PUT', class: '', id: 'delivery-methods' }) do |f|
   = render 'checkout/delivery_methods', f: f
   .general-text-align
     %p.in-gold-500.font-18 Order Summary
