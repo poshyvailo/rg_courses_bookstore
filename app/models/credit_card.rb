@@ -11,7 +11,7 @@ class CreditCard < ApplicationRecord
   end
 
   def number=(value)
-    write_attribute(:number, value.tr(' ', '')) if value
+    write_attribute(:number, value.tr(' ', ''))
   end
 
 end
