@@ -24,6 +24,7 @@ feature 'Checkout Payment step' do
   end
 
   scenario 'Customer fill wrong credit card data' do
+    visit order_checkout_path(order, :payment)
     click_button('Save and Continue')
     expect(page).to have_current_path order_checkout_path(order, :payment)
   end

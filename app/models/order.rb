@@ -16,14 +16,14 @@ class Order < ApplicationRecord
   belongs_to :delivery_method, optional: true
   belongs_to :credit_card, optional: true
 
-  belongs_to :billing_address, class_name: 'Address'
-  belongs_to :shipping_address, class_name: 'Address'
+  belongs_to :billing_address, class_name: 'Address', optional: true
+  belongs_to :shipping_address, class_name: 'Address', optional: true
 
-  validates :billing_address, :presence => true, if: :confirm_or_address?
-  validates :shipping_address, :presence => true, if: :confirm_or_address?
+  # validates :billing_address, :presence => true, if: :confirm_or_address?
+  # validates :shipping_address, :presence => true, if: :confirm_or_address?
   validates :delivery_method, :presence => true, if: :confirm_or_delivery?
-  validates :credit_card, :presence => true, if: :confirm_or_payment?
-  validates :customer, :presence => true,  if: :confirm?
+  # validates :credit_card, :presence => true, if: :confirm_or_payment?
+  # validates :customer, :presence => true,  if: :confirm?
 
   accepts_nested_attributes_for :shipping_address, :billing_address, :credit_card
 
@@ -33,17 +33,18 @@ class Order < ApplicationRecord
     order_step == 'complete'
   end
 
-  def confirm_or_address?
-    order_step.nil? || confirm?
-  end
-
+  #
+  # def confirm_or_address?
+  #   order_step == 'address' || confirm?
+  # end
+  #
   def confirm_or_delivery?
     order_step == 'delivery' || confirm?
   end
-
-  def confirm_or_payment?
-    order_step == 'payment' || confirm?
-  end
+  #
+  # def confirm_or_payment?
+  #   order_step == 'payment' || confirm?
+  # end
 
   def billing_address
     super() || build_billing_address

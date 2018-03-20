@@ -13,7 +13,7 @@ feature 'Checkout Confirm step' do
   end
 
   scenario "Redirect to confirm step if customer try go to complete step" do
-    visit order_checkout_path(order, step)
+    visit order_checkout_path(order, :complete)
     expect(page).to have_current_path order_checkout_path(order, :confirm)
   end
 end
