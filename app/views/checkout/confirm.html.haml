@@ -6,7 +6,7 @@
     %p.general-address
       = @order.shipping_address.fullname
       %span.general-edit
-        = link_to 'edit', wizard_path(:address)
+        = link_to 'edit', wizard_path(:address), id: 'edit-shipping-address'
       %br
       = @order.shipping_address.delivery_address
       %br
@@ -20,7 +20,7 @@
     %p.general-address
       = @order.billing_address.fullname
       %span.general-edit
-        = link_to 'edit', wizard_path(:address)
+        = link_to 'edit', wizard_path(:address), id: 'edit-billing-address'
       %br
       = @order.billing_address.delivery_address
       %br
@@ -34,7 +34,7 @@
     %p.general-address
       = @order.delivery_method.name
       %span.general-edit
-        = link_to 'edit', wizard_path(:delivery)
+        = link_to 'edit', wizard_path(:delivery), id: 'edit-delivery-method'
       %br
       = @order.delivery_method.shipping_days
   .col-sm-3
@@ -42,7 +42,7 @@
     %p.general-address
       = @order.hidden_credit_card
       %span.general-edit
-        = link_to 'edit', wizard_path(:payment)
+        = link_to 'edit', wizard_path(:payment), id: 'edit-payment'
       %br
       12/2018
 .visible-xs

@@ -9,7 +9,8 @@
       .col-sm-6
         = cf.input :card_owner, label: 'Name on Card', placeholder: 'Name on Card'
       .col-sm-3
-        = cf.input :expiration, label: 'MM / YY', placeholder: 'MM / YY', as: :string
+        - logger.debug "#{@order.credit_card.expiration}"
+        = cf.input :expiration, label: 'MM / YY', placeholder: 'MM / YY', as: :string, :input_html => { value: cf.object.expiration.strftime("%m / %y") }
       .col-sm-3
         = cf.input :cvv, label: 'CVV', wrapper_html: { class: 'relative' } do
           = cf.input_field :cvv, placeholder: 'CVV', class: 'form-control'

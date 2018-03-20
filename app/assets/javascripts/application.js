@@ -1,3 +1,4 @@
+
 // This is a manifest file that'll be compiled into application.js, which will include all the files
 // listed below.
 //
@@ -10,19 +11,31 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
-
 //= require jquery3
 //= require rails-ujs
 //= require bootstrap-sprockets
-//= require jquery.inputmask
-//= require jquery.inputmask.extensions
-//= require jquery.inputmask.numeric.extensions
-//= require jquery.inputmask.date.extensions
+//= require inputmask/inputmask.min
+//= require inputmask/inputmask.extensions.min
+//= require inputmask/inputmask.numeric.extensions.min
+//= require inputmask/inputmask.date.extensions.min
+//= require inputmask/inputmask.phone.extensions.min
+//= require inputmask/jquery.inputmask.min
+//= require inputmask/phone-codes/phone.min
 
-// $(function () {
-//     $('[data-toggle="tooltip"]').tooltip();
-//     $('[id*="expiration"]').inputmask({ mask: "99 / 99", "placeholder": "MM / YY" });
-//     $('[id*="number"]').inputmask({ mask: "9999 9999 9999 9999", "placeholder": "*" });
-//     $('[id*="phone"]').inputmask({ mask: "+99(999) 999-9999" })
-// });
+
+$(function () {
+    $('[data-toggle="tooltip"]').tooltip();
+    $('[id*="expiration"]').inputmask('datetime', {
+        inputFormat: "mm / yy",
+        placeholder: "MM / YY"
+    });
+    $('[id*="number"]').inputmask({
+        mask: "9999 9999 9999 9999",
+        placeholder: "*",
+        removeMaskOnSubmit: true
+    });
+    $('[id*="phone"]').inputmask("phone", {
+        removeMaskOnSubmit: true
+    });
+});
 
