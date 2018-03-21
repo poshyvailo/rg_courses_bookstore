@@ -1,10 +1,10 @@
 %h1.general-title-margin= t('checkout.title')
-= render 'checkout/progress'
+= checkout_progress_bar
 %h3.general-subtitle= t('shipping.method')
 = simple_form_for(@order, url: wizard_path,
   html: { method: 'PUT', class: '', id: 'delivery-methods' }) do |f|
   = render 'checkout/delivery_methods', f: f
   .general-text-align
-    = render 'checkout/checkout_summary'
+    = render 'checkout/checkout_summary', position: :left
   .text-center
   = f.button :submit, t('checkout.continue_btn'), class: 'btn btn-default center-block mb-20'

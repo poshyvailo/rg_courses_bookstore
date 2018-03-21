@@ -1,5 +1,5 @@
 %h1.general-title-margin Checkout
-= render 'checkout/progress'
+= checkout_progress_bar
 .text-center.mb-40
   %h3.general-subtitle Thank You for your Order!
   %p.fw-300= "An order confirmation has been has been sent to  #{@order.customer_name} #{@order.customer_email}"
@@ -41,6 +41,6 @@
       - @order.items.each do |item|
         = render 'checkout/confirm/item', item: item
 .text-center.general-text-right
-  = render 'checkout/checkout_summary', table_class: 'general-summary-table-right general-text-right'
+  = render 'checkout/checkout_summary', position: :right
 .text-center
   %a.btn.btn-default.mb-20{ href: catalog_path} Back to Store

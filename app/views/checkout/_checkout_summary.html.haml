@@ -1,5 +1,5 @@
 %p.in-gold-500.font-18= t('checkout.summary')
-%table.general-summary-table{class: table_class}
+%table.general-summary-table{ class: ('general-summary-table-right general-text-right' if position == :right) }
   %tr
     %td
       %p.font-16= t('checkout.subtotal')

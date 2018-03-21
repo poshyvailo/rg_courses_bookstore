@@ -1,0 +1,15 @@
+%table.table.table-hover
+  %thead
+    %tr
+      %th
+        %span.in-grey-600= t('checkout.items.book')
+      %th.col-method
+      %th
+        %span.in-grey-600= t('checkout.items.price')
+      %th
+        %span.in-grey-600= t('checkout.items.quantity')
+      %th
+        %span.in-grey-600= t('checkout.items.total')
+  %tbody
+    - @order.items.each do |item|
+      = render 'checkout/confirm/item', item: item

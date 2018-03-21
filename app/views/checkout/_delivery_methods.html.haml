@@ -2,11 +2,11 @@
   %thead
     %tr
       %th.col-method
-        %span.in-grey-600.ml-40 Method
+        %span.in-grey-600.ml-40= t('shipping.table.method')
       %th
-        %span.in-grey-600 Days
+        %span.in-grey-600= t('shipping.table.days')
       %th
-        %span.in-grey-600 Price
+        %span.in-grey-600= t('shipping.table.price')
   %tbody
     = f.collection_radio_buttons :delivery_method_id, @delivery_methods, :id, :name do |b|
       %tr
@@ -19,4 +19,4 @@
         %td
           %span= b.object.shipping_days
         %td
-          %span.font-16.in-gold-500= number_to_currency b.object.price
+          %span.font-16.in-gold-500= currency(b.object.price)

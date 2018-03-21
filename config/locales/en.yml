@@ -83,6 +83,10 @@ en:
   shipping:
     method: 'Shipping Method'
     shipments: 'Shipments'
+    table:
+      method: 'Method'
+      days: 'Days'
+      price: 'Price'
   payment:
     title: 'Credit Card'
     payment_info: 'Payment Information'
@@ -100,5 +104,11 @@ en:
     shipping: 'Shipping'
     total: 'Total:'
     continue_btn: 'Save and Continue'
+    items:
+      book: 'Book'
+      price: 'Price'
+      quantity: 'Quantity'
+      total: 'Total'
+      subtotal: 'SubTotal:'
   flash:
     added_book: 'Book added to cart'
