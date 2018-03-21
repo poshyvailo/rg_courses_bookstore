@@ -1,8 +1,8 @@
-%h1.general-title-margin Checkout
+%h1.general-title-margin= t('checkout.title')
 = render 'checkout/progress'
 .row.mb-20
   .col-sm-3
-    %h3.general-subtitle Shipping Address
+    %h3.general-subtitle= t('address.shipping')
     %p.general-address
       = @order.shipping_address.fullname
       %span.general-edit
@@ -16,7 +16,7 @@
       %br
       = @order.shipping_address.phone
   .col-sm-3
-    %h3.general-subtitle Billing Address
+    %h3.general-subtitle= t('address.billing')
     %p.general-address
       = @order.billing_address.fullname
       %span.general-edit
@@ -30,7 +30,7 @@
       %br
       = @order.billing_address.phone
   .col-sm-3
-    %h3.general-subtitle Shipments
+    %h3.general-subtitle= t('shipping.shipments')
     %p.general-address
       = @order.delivery_method.name
       %span.general-edit
@@ -38,13 +38,13 @@
       %br
       = @order.delivery_method.shipping_days
   .col-sm-3
-    %h3.general-subtitle Payment Information
+    %h3.general-subtitle= t('payment.payment_info')
     %p.general-address
-      = @order.hidden_credit_card
+      = @order.credit_card.hidden_number
       %span.general-edit
         = link_to 'edit', wizard_path(:payment), id: 'edit-payment'
       %br
-      12/2018
+      = @order.credit_card.show_exp
 .visible-xs
   - @order.items.each_with_index do |item, index|
     = render 'checkout/confirm/item-xs', item: item, margin_class: ('mb-55' if index == 0)

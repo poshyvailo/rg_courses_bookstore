@@ -66,6 +66,39 @@ en:
     coupon: 'Coupon'
     order_total: 'Order Total'
     checkout_link: 'Checkout'
-
+  address:
+    billing: 'Billing Address'
+    shipping: 'Shippin Address'
+    labels:
+      firstname: 'First Name'
+      lastname: 'Last Name'
+      address: 'Address'
+      city: 'City'
+      zip: 'Zip'
+      country: 'Country'
+      phone: 'Phone'
+      use_billing_address: 'Use Billing Address'
+    placeholders:
+      country: 'Select a country'
+  shipping:
+    method: 'Shipping Method'
+    shipments: 'Shipments'
+  payment:
+    title: 'Credit Card'
+    payment_info: 'Payment Information'
+    labels:
+      number: 'Card Number'
+      owner: 'Name on Card'
+      expiration: 'MM / YY'
+      cvv: 'CVV'
+      cvv_help: '3-digest security code usually found on the back of your card. American Express cards have a 4-digest code located on the front'
+  checkout:
+    title: 'Checkout'
+    summary: 'Order Summary'
+    subtotal: 'Subtotal:'
+    coupon: 'Coupon:'
+    shipping: 'Shipping'
+    total: 'Total:'
+    continue_btn: 'Save and Continue'
   flash:
     added_book: 'Book added to cart'

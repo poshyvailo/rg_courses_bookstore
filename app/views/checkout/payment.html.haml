@@ -1,38 +1,34 @@
-%h1.general-title-margin Checkout
+%h1.general-title-margin= t('checkout.title')
 = render 'checkout/progress'
-%h3.general-subtitle Credit Card
+%h3.general-subtitle= t('payment.title')
 = simple_form_for(@order, url: wizard_path,
   html: { method: 'PUT', class: 'max-600 mb-80', id: 'credit-card'}) do |f|
+  - logger.debug "#{@order.credit_card.inspect}"
   = f.simple_fields_for :credit_card do |cf|
-    = cf.input :number, placeholder: 'Card Number', label: 'Card Number'
+    = cf.input :number,
+      label: t('payment.labels.number'),
+      placeholder: t('payment.labels.number')
     .row
       .col-sm-6
-        = cf.input :card_owner, label: 'Name on Card', placeholder: 'Name on Card'
+        = cf.input :card_owner,
+          label: t('payment.labels.owner'),
+          placeholder: t('payment.labels.owner')
       .col-sm-3
-        - logger.debug "#{@order.credit_card.expiration}"
-        = cf.input :expiration, label: 'MM / YY', placeholder: 'MM / YY', as: :string, :input_html => { value: cf.object.expiration.strftime("%m / %y") }
+        = cf.input :expiration,
+          label: t('payment.labels.expiration'),
+          placeholder: t('payment.labels.expiration'),
+          as: :string,
+          input_html: { value: cf.object.input_exp }
       .col-sm-3
-        = cf.input :cvv, label: 'CVV', wrapper_html: { class: 'relative' } do
-          = cf.input_field :cvv, placeholder: 'CVV', class: 'form-control'
-          %i.fa.fa-question-circle.general-form-help{'data-toggle' => 'tooltip', 'data-placement' => 'top', title: '3-digest security code usually found on the back of your card. American Express cards have a 4-digest code located on the front' }
-  = javascript_include_tag 'delete_account.js'
+        = cf.input :cvv,
+          label: t('payment.labels.cvv'),
+          wrapper_html: { class: 'relative' } do
+          = cf.input_field :cvv,
+            placeholder: t('payment.labels.cvv'),
+            class: 'form-control'
+          %i.fa.fa-question-circle.general-form-help{ 'data-toggle' => 'tooltip',
+          'data-placement' => 'top', title: t('payment.labels.cvv_help') }
   .general-text-align
-    %p.in-gold-500.font-18 Order Summary
-    %table.general-summary-table
-      %tr
-        %td
-          %p.font-16 Subtotal:
-        %td
-          %p.font-16 €117.69
-      %tr
-        %td
-          %p.font-16 Coupon:
-        %td
-          %p.font-16 €0.00
-      %tr
-        %td
-          %strong.font-18 Order Total:
-        %td
-          %strong.font-18 €117.69
+    = render 'checkout/checkout_summary'
   .text-center
-    = f.button :submit, 'Save and Continue', class: 'btn btn-default center-block mb-20'
+    = f.button :submit, t('checkout.continue_btn'), class: 'btn btn-default center-block mb-20'

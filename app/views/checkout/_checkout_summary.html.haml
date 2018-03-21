@@ -1,0 +1,22 @@
+%p.in-gold-500.font-18= t('checkout.summary')
+%table.general-summary-table
+  %tr
+    %td
+      %p.font-16= t('checkout.subtotal')
+    %td
+      %p.font-16= @order.item_total
+  %tr
+    %td
+      %p.font-16= t('checkout.coupon')
+    %td
+      %p.font-16 0.00
+  %tr
+    %td
+      %p.font-16= t('checkout.shipping')
+    %td
+      %p.font-16 0.00
+  %tr
+    %td
+      %p.font-16= t('checkout.total')
+    %td
+      %p.font-16= @order.total_in_euro

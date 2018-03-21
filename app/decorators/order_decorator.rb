@@ -4,6 +4,7 @@ class OrderDecorator < ApplicationDecorator
   decorates_association :shipping_address
   decorates_association :billing_address
   decorates_association :order_items
+  decorates_association :credit_card
 
   def sub_total
     object.order_items.inject(0) do |sum, item|
@@ -41,9 +42,9 @@ class OrderDecorator < ApplicationDecorator
     "€#{value}"
   end
 
-  def hidden_credit_card
-    "#{'**** ' * 3} #{object.credit_card.number[-4..-1]}"
-  end
+  # def hidden_credit_card
+  #   "#{'**** ' * 3} #{object.credit_card.number[-4..-1]}"
+  # end
 
   def order_number
     sprintf 'R%08d', id

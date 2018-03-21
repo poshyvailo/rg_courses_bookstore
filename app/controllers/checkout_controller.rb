@@ -1,6 +1,5 @@
 class CheckoutController < ApplicationController
   include Wicked::Wizard
-  # include CheckoutOperation
 
   load_and_authorize_resource :order
 
