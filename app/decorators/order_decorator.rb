@@ -14,37 +14,21 @@ class OrderDecorator < ApplicationDecorator
 
   alias :item_total :sub_total
 
-  def sub_total_in_euro
-    "€#{sub_total}"
-  end
-
   def total
     sub_total + delivery_cost
   end
 
-  def total_in_euro
-    "€#{total}"
-  end
-
   def delivery_cost
-    object.delivery_method ? object.delivery_method.price : 0
+    object.delivery_method.price
   end
 
-  def delivery_cost_in_euro
-    "€#{delivery_cost}"
+  def coupon_discount
+    nil
   end
 
   def items
     order_items
   end
-
-  def in_euro(value)
-    "€#{value}"
-  end
-
-  # def hidden_credit_card
-  #   "#{'**** ' * 3} #{object.credit_card.number[-4..-1]}"
-  # end
 
   def order_number
     sprintf 'R%08d', id

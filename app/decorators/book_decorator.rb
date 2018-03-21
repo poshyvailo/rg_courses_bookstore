@@ -9,10 +9,6 @@ class BookDecorator < ApplicationDecorator
     "H: #{width}\" x W: #{height}\" x D: #{depth}\""
   end
 
-  def price_in_euro
-    "€#{price}"
-  end
-
   def short_description
     truncate(description, length: 500, separator: ' ', omission: '... ') { link_to "View More", "#" }
    end

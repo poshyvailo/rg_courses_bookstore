@@ -4,7 +4,7 @@ class OrderItemDecorator < ApplicationDecorator
   decorates_association :book
 
   def sub_total
-    "€#{price * quantity}"
+    price * quantity
   end
 
 end

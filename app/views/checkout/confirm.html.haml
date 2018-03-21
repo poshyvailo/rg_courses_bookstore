@@ -65,28 +65,7 @@
       - @order.items.each do |item|
         = render 'checkout/confirm/item', item: item
 .text-center.general-text-right
-  %p.in-gold-500.font-18 Order Summary
-  %table.general-summary-table.general-summary-table-right.general-text-right
-    %tr
-      %td
-        %p.font-16 Subtotal:
-      %td
-        %p.font-16= @order.sub_total_in_euro
-    %tr
-      %td
-        %p.font-16 Delivery:
-      %td
-        %p.font-16= @order.delivery_cost_in_euro
-    %tr
-      %td
-        %p.font-16 Coupon:
-      %td
-        %p.font-16 €0.00
-    %tr
-      %td
-        %strong.font-18 Order Total:
-      %td
-        %strong.font-18= @order.total_in_euro
+  = render 'checkout/checkout_summary', table_class: 'general-summary-table-right general-text-right'
 .text-center
   = simple_form_for(@order, url: wizard_path,
   html: { method: 'PUT', class: '', id: 'confirm'}) do |f|

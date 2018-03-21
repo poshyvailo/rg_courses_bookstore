@@ -11,6 +11,11 @@ module ApplicationHelper
     @cart_count_items ||= current_order.order_items.count
   end
 
+  def currency(amount)
+    return currency(0.00) if amount.nil?
+    number_to_currency(amount,:unit=>'€', format: '%u %n')
+  end
+
   def checkout_progress_bar
     content_tag(:ul, class: 'steps list-inline') do
       wizard_steps.collect.with_index do |every_step, index|

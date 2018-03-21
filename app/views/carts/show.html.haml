@@ -36,17 +36,17 @@
                 %td
                   %p.font-16= "#{t('cart.sub_total')}:"
                 %td
-                  %p.font-16= @order.sub_total_in_euro
+                  %p.font-16= currency(@order.sub_total)
               %tr
                 %td
                   %p.font-16= "#{t('cart.coupon')}:"
                 %td
-                  %p.font-16 €0.00
+                  %p.font-16= currency(@order.coupon_discount)
               %tr
                 %td
                   %strong.font-18= "#{t('cart.order_total')}:"
                 %td
-                  %strong.font-18= @order.total_in_euro
+                  %strong.font-18= currency(@order.total)
             %a.btn.btn-default.mb-20.visible-xs-inline-block{ href: order_checkout_index_path(current_order)}= t('cart.checkout_link')
     .text-center
       %a#checkout-btn-xs.btn.btn-default.mb-20.hidden-xs{ href: order_checkout_index_path(current_order)}= t('cart.checkout_link')

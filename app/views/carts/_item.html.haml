@@ -6,7 +6,7 @@
     %td
       %p.title= item.book.title
     %td
-      %span.font-16.in-gold-500= item.book.price_in_euro
+      %span.font-16.in-gold-500= currency(item.book.price)
     %td
       .input-group
         = button_tag class: 'btn btn-link input-link', name: :minus do
@@ -15,7 +15,7 @@
         = button_tag class: 'btn btn-link input-link', name: :plus do
           %i.fa.fa-plus.line-heaght-40
     %td
-      %span.font-16.in-gold-500= item.sub_total
+      %span.font-16.in-gold-500= currency(item.sub_total)
     %td
       = button_tag class: 'close general-cart-close', name: :delete do
         %span{'aria-hidden': "true"} &times;
