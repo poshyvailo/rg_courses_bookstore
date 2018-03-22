@@ -9,7 +9,7 @@ feature 'Sign In' do
     within '#new_customer' do
       fill_in 'customer_email', with: customer.email
       fill_in 'customer_password', with: customer.password
-      click_button('Sign In')
+      click_button t('auth.sign_in')
     end
     expect(page).to have_current_path root_path
     expect(page).to have_content 'Signed in successfully.'
@@ -18,7 +18,7 @@ feature 'Sign In' do
   scenario 'Customer did not enter e-mail and password' do
     visit new_customer_session_url
     within '#new_customer' do
-      click_button('Sign In')
+      click_button t('auth.sign_in')
     end
     expect(page).to have_current_path new_customer_session_path
     expect(page).to have_content 'Invalid Email or password'
@@ -28,7 +28,7 @@ feature 'Sign In' do
     visit new_customer_session_url
     within '#new_customer' do
       fill_in 'customer_email', with: customer.email
-      click_button('Sign In')
+      click_button t('auth.sign_in')
     end
     expect(page).to have_current_path new_customer_session_path
     expect(page).to have_content 'Invalid Email or password'
@@ -38,7 +38,7 @@ feature 'Sign In' do
     visit new_customer_session_url
     within '#new_customer' do
       fill_in 'customer_password', with: customer.password
-      click_button('Sign In')
+      click_button t('auth.sign_in')
     end
     expect(page).to have_current_path new_customer_session_path
     expect(page).to have_content 'Invalid Email or password'
@@ -47,7 +47,7 @@ feature 'Sign In' do
   scenario 'Customer click "Forgot password?" link' do
     visit new_customer_session_url
     within '#new_customer' do
-      click_link('Forgot password?')
+      click_link t('auth.forgot_password')
     end
     expect(page).to have_current_path new_customer_password_path
   end
@@ -55,7 +55,7 @@ feature 'Sign In' do
   scenario 'Customer click "Sign Up" link' do
     visit new_customer_session_url
     within 'p.text-center' do
-      click_link('Sign Up')
+      click_link t('auth.sign_up')
     end
     expect(page).to have_current_path new_customer_registration_path
   end

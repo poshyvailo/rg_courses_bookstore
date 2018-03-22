@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180303155102) do
+ActiveRecord::Schema.define(version: 20180322140449) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -106,6 +106,15 @@ ActiveRecord::Schema.define(version: 20180303155102) do
     t.index ["title"], name: "index_categories_on_title", unique: true
   end
 
+  create_table "coupons", force: :cascade do |t|
+    t.string "name"
+    t.decimal "discount", precision: 10, scale: 2
+    t.boolean "available"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["name"], name: "index_coupons_on_name"
+  end
+
   create_table "credit_cards", force: :cascade do |t|
     t.string "card_owner"
     t.string "number"
@@ -163,6 +172,8 @@ ActiveRecord::Schema.define(version: 20180303155102) do
     t.datetime "updated_at", null: false
     t.integer "delivery_method_id"
     t.string "order_step"
+    t.bigint "coupon_id"
+    t.index ["coupon_id"], name: "index_orders_on_coupon_id"
     t.index ["credit_card_id"], name: "index_orders_on_credit_card_id"
     t.index ["customer_id"], name: "index_orders_on_customer_id"
   end
@@ -184,6 +195,7 @@ ActiveRecord::Schema.define(version: 20180303155102) do
   add_foreign_key "books_categories", "categories"
   add_foreign_key "order_items", "books"
   add_foreign_key "order_items", "orders", on_delete: :cascade
+  add_foreign_key "orders", "coupons"
   add_foreign_key "orders", "credit_cards"
   add_foreign_key "orders", "customers"
   add_foreign_key "ratings", "books"

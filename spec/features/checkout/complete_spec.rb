@@ -8,7 +8,7 @@ feature 'Checkout Complete step' do
     login_as order.customer, scope: :customer
     visit order_checkout_path(order, :confirm)
     within '#confirm' do
-      click_button('Place Order')
+      click_button t('confirm.place_order')
     end
   end
 
@@ -17,7 +17,7 @@ feature 'Checkout Complete step' do
   end
 
   scenario 'Customer click "Back to Store" button' do
-    click_link('Back to Store')
+    click_link t('confirm.back_to_store_link')
     expect(page).to have_current_path catalog_path
   end
 

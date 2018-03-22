@@ -19,7 +19,7 @@ feature 'Checkout Delivery step' do
 
     within '#delivery-methods' do
       choose option: DeliveryMethod.first.id, visible: false
-      click_button('Save and Continue')
+      click_button t('checkout.continue_btn')
     end
 
     expect(page).to have_current_path order_checkout_path(order, :payment)
@@ -27,7 +27,7 @@ feature 'Checkout Delivery step' do
 
   scenario 'Customer not select delivery method' do
     visit order_checkout_path(order, :delivery)
-    click_button('Save and Continue')
+    click_button t('checkout.continue_btn')
 
     expect(page).to have_current_path order_checkout_path(order, :delivery)
   end
@@ -37,7 +37,7 @@ feature 'Checkout Delivery step' do
       visit order_checkout_path(order, step)
 
       expect(page).to have_current_path order_checkout_path(order, :delivery)
-      expect(page).to have_content 'Shipping Medhod'
+      expect(page).to have_content t('shipping.method')
     end
   end
 end

@@ -1,12 +1,12 @@
-%h1.general-title-margin Checkout
+%h1.general-title-margin= t('checkout.title')
 = checkout_progress_bar
 .text-center.mb-40
-  %h3.general-subtitle Thank You for your Order!
-  %p.fw-300= "An order confirmation has been has been sent to  #{@order.customer_name} #{@order.customer_email}"
+  %h3.general-subtitle= t('confirm.thank_text')
+  %p.fw-300= t('confirm.send_email_text', name: @order.customer_name, email: @order.customer_email)
 .row.mb-20
   .col-sm-6
     .visible-xs
-      %p.general-order-number.mb-0= "Order ##{@order.order_number}"
+      %p.general-order-number.mb-0= t('confirm.order_number', number: @order.order_number)
       %p.general-address.mb-30= @order.order_date
     %p.general-address
       = @order.shipping_address.fullname
@@ -17,30 +17,16 @@
       %br
       = @order.shipping_address.country_name
       %br
-      = "Phone #{@order.shipping_address.phone}"
+      = t('confirm.phone', phone: @order.shipping_address.phone)
   .col-sm-6.hidden-xs.text-right
-    %p.general-order-number.mb-0= "Order ##{@order.order_number}"
+    %p.general-order-number.mb-0= t('confirm.order_number', number: @order.order_number)
     %p.general-address.mb-30= @order.order_date
 .visible-xs
   - @order.items.each_with_index do |item, index|
     = render 'checkout/confirm/item-xs', item: item, margin_class: ('mb-55' if index == 0)
 .hidden-xs.divider-lg.pt-20
-  %table.table.table-hover
-    %thead
-      %tr
-        %th
-          %span.in-grey-600 Book
-        %th.col-method
-        %th
-          %span.in-grey-600 Price
-        %th
-          %span.in-grey-600 Quantity
-        %th
-          %span.in-grey-600 Total
-    %tbody
-      - @order.items.each do |item|
-        = render 'checkout/confirm/item', item: item
+  = render 'checkout/confirm/items'
 .text-center.general-text-right
   = render 'checkout/checkout_summary', position: :right
 .text-center
-  %a.btn.btn-default.mb-20{ href: catalog_path} Back to Store
+  %a.btn.btn-default.mb-20{ href: catalog_path}= t('confirm.back_to_store_link')

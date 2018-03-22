@@ -68,7 +68,7 @@ en:
     checkout_link: 'Checkout'
   address:
     billing: 'Billing Address'
-    shipping: 'Shippin Address'
+    shipping: 'Shipping Address'
     labels:
       firstname: 'First Name'
       lastname: 'Last Name'
@@ -110,5 +110,12 @@ en:
       quantity: 'Quantity'
       total: 'Total'
       subtotal: 'SubTotal:'
+  confirm:
+    thank_text: 'Thank You for your Order!'
+    send_email_text: "An order confirmation has been has been sent to %{name} %{email}"
+    order_number: "Order #%{number}"
+    phone: "Phone %{phone}"
+    back_to_store_link: 'Back to Store'
+    place_order: 'Place Order'
   flash:
     added_book: 'Book added to cart'

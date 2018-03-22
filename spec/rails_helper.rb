@@ -7,6 +7,7 @@ require File.expand_path('../../config/environment', __FILE__)
 abort("The Rails environment is running in production mode!") if Rails.env.production?
 require 'rspec/rails'
 require 'capybara/rails'
+require 'support/i18n_helper'
 
 ActiveRecord::Migration.maintain_test_schema!
 
@@ -21,7 +22,7 @@ RSpec.configure do |config|
   end
 
   config.include FactoryBot::Syntax::Methods
-  # config.include FeatureHelper, type: :feature
+  config.include I18nHelper, type: :feature
 
   config.before(:each) do
     DatabaseCleaner.start

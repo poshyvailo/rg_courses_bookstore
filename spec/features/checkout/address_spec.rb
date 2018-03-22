@@ -22,26 +22,19 @@ feature 'Checkout Address step' do
         select 'Argentina', from: "order_#{type}_address_attributes_country"
         fill_in "order_#{type}_address_attributes_phone", with: address.phone
       end
-      click_button('Save and Continue')
+      click_button t('checkout.continue_btn')
     end
 
     expect(page).to have_current_path order_checkout_path(order, :delivery)
-    expect(page).to have_content 'Shipping Medhod'
+    expect(page).to have_content t('shipping.method')
   end
 
   scenario 'Customer incorrect fill address forms' do
     visit order_checkout_path(order, :address)
 
-    click_button('Save and Continue')
+    click_button t('checkout.continue_btn')
 
     expect(page).to have_current_path order_checkout_path(order, :address)
-    expect(page).to have_content "Firstname can't be blank"
-    expect(page).to have_content "Lastname can't be blank"
-    expect(page).to have_content "Delivery address can't be blank"
-    expect(page).to have_content "City can't be blank"
-    expect(page).to have_content "Zipcode can't be blank"
-    expect(page).to have_content "Country can't be blank"
-    expect(page).to have_content "Phone can't be blank"
   end
 
   scenario 'Customer use "Use Billing Address" checkbox' do
@@ -58,11 +51,11 @@ feature 'Checkout Address step' do
         fill_in "order_#{type}_address_attributes_phone", with: address.phone
       end
       check 'use_billing_address', visible: false
-      click_button('Save and Continue')
+      click_button t('checkout.continue_btn')
     end
 
     expect(page).to have_current_path order_checkout_path(order, :delivery)
-    expect(page).to have_content 'Shipping Medhod'
+    expect(page).to have_content t('shipping.method')
   end
 
   %i[delivery payment confirm complete].each do |step|
@@ -70,8 +63,8 @@ feature 'Checkout Address step' do
       visit order_checkout_path(order, step)
 
       expect(page).to have_current_path order_checkout_path(order, :address)
-      expect(page).to have_content 'Billing Address'
-      expect(page).to have_content 'Shipping Address'
+      expect(page).to have_content t('address.billing')
+      expect(page).to have_content t('address.shipping')
     end
   end
 end

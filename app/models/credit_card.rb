@@ -9,9 +9,4 @@ class CreditCard < ApplicationRecord
         nil
       end
   end
-
-  def number=(value)
-    write_attribute(:number, value.tr(' ', ''))
-  end
-
 end

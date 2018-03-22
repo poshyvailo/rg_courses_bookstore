@@ -11,7 +11,7 @@ feature 'Checkout Confirm step' do
 
   scenario 'Customer click "Place Order" button' do
     visit visit order_checkout_path(order, :confirm)
-    click_button 'Place Order'
+    click_button t('confirm.place_order')
     expect(page).to have_current_path order_checkout_path(order, :complete)
   end
 
@@ -40,7 +40,7 @@ feature 'Checkout Confirm step' do
             select 'Argentina', from: "order_#{type}_address_attributes_country"
             fill_in "order_#{type}_address_attributes_phone", with: address.phone
           end
-          click_button('Save and Continue')
+          click_button t('checkout.continue_btn')
         end
 
         expect(page).to have_current_path order_checkout_path(order, :confirm)
@@ -56,7 +56,7 @@ feature 'Checkout Confirm step' do
           %w[billing shipping].each do |type|
             fill_in "order_#{type}_address_attributes_firstname", with: ''
           end
-          click_button('Save and Continue')
+          click_button t('checkout.continue_btn')
         end
 
         expect(page).to have_current_path order_checkout_path(order, :address)
@@ -73,32 +73,12 @@ feature 'Checkout Confirm step' do
       scenario 'Customer change delivery method' do
         within '#delivery-methods' do
           choose option: DeliveryMethod.first.id, visible: false
-          click_button('Save and Continue')
+          click_button t('checkout.continue_btn')
         end
 
         expect(page).to have_current_path order_checkout_path(order, :confirm)
         expect(page).to have_content(DeliveryMethod.first.name)
       end
     end
-
-    # context 'Update credit card method' do
-    #   background do
-    #     visit visit order_checkout_path(order, :confirm)
-    #     click_link 'edit-payment'
-    #   end
-    #
-    #   scenario 'Customer change credit card and enter valid data' do
-    #     within '#credit-card' do
-    #       fill_in 'order_credit_card_attributes_number', with: credit_card.number
-    #       fill_in 'order_credit_card_attributes_card_owner', with: credit_card.card_owner
-    #       fill_in 'order_credit_card_attributes_cvv', with: credit_card.cvv
-    #       fill_in 'order_credit_card_attributes_expiration', with: '10 / 20'
-    #       click_button('Save and Continue')
-    #     end
-    #
-    #     expect(page).to have_current_path order_checkout_path(order, :confirm)
-    #     expect(page).to have_content(DeliveryMethod.first.name)
-    #   end
-    # end
   end
 end

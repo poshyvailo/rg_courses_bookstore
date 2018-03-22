@@ -24,7 +24,7 @@ module ApplicationHelper
         step_class = "active" if past_step?(every_step)
         concat(
             content_tag(:li, class: "step #{step_class}") do
-              step_number = past_step?(every_step) ? '🗸' : index + 1
+              step_number = past_step?(every_step) ? '✓' : index + 1
               content_tag(:span, step_number, class: 'step-number') +
               content_tag(:span, every_step.to_s.capitalize, class: 'step-text hidden-xs')
             end

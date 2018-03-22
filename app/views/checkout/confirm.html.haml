@@ -55,4 +55,4 @@
 .text-center
   = simple_form_for(@order, url: wizard_path,
   html: { method: 'PUT', class: '', id: 'confirm'}) do |f|
-    = f.button :submit, 'Place Order', class: 'btn btn-default mb-20'
+    = f.button :submit, t('confirm.place_order'), class: 'btn btn-default mb-20'

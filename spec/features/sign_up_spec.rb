@@ -8,7 +8,7 @@ feature 'Sign Up' do
       fill_in 'customer_email', with: FFaker::Internet.free_email
       fill_in 'customer_password', with: '12345678'
       fill_in 'customer_password_confirmation', with: '12345678'
-      click_button('Sign Up')
+      click_button t('auth.sign_up')
     end
     expect(page).to have_content 'Welcome! You have signed up successfully'
   end
@@ -16,7 +16,7 @@ feature 'Sign Up' do
   scenario 'Customer did not enter e-mail and password' do
     visit new_customer_registration_url
     within '#new_customer' do
-      click_button('Sign Up')
+      click_button t('auth.sign_up')
     end
     expect(page).to have_content "Email can't be blank"
     expect(page).to have_content "Password can't be blank"
@@ -28,7 +28,7 @@ feature 'Sign Up' do
       fill_in 'customer_email', with: FFaker::Internet.free_email
       fill_in 'customer_password', with: '12345678'
       fill_in 'customer_password_confirmation', with: '87654321'
-      click_button('Sign Up')
+      click_button t('auth.sign_up')
     end
     expect(page).to have_content "Password confirmation doesn't match Password"
   end
@@ -40,7 +40,7 @@ feature 'Sign Up' do
       fill_in 'customer_email', with: customer.email
       fill_in 'customer_password', with: '12345678'
       fill_in 'customer_password_confirmation', with: '12345678'
-      click_button('Sign Up')
+      click_button t('auth.sign_up')
     end
     expect(page).to have_content 'Email has already been taken'
   end
@@ -48,7 +48,7 @@ feature 'Sign Up' do
   scenario 'Customer click "Sign In" link' do
     visit new_customer_registration_url
     within 'p.text-center' do
-      click_link('Sign In')
+      click_link t('auth.sign_in')
     end
     expect(page).to have_current_path new_customer_session_path
   end
