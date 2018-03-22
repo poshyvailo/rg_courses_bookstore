@@ -12,25 +12,31 @@ require 'support/i18n_helper'
 ActiveRecord::Migration.maintain_test_schema!
 
 RSpec.configure do |config|
-  config.use_transactional_fixtures = false
   config.include Warden::Test::Helpers
-  config.before(:suite) { Warden.test_mode! }
-
-  config.before(:suite) do
-    DatabaseCleaner.clean_with(:truncation)
-    DatabaseCleaner.strategy = :transaction
-  end
-
   config.include FactoryBot::Syntax::Methods
   config.include I18nHelper, type: :feature
 
-  config.before(:each) do
-    DatabaseCleaner.start
+  config.use_transactional_fixtures = false
+  config.before(:suite) { Warden.test_mode! }
+
+  config.before(:suite) do
+    DatabaseCleaner.strategy = :transaction
+    DatabaseCleaner.clean_with(:truncation)
   end
 
-  config.after(:each) do
-    DatabaseCleaner.clean
+  config.around(:each) do |example|
+    DatabaseCleaner.cleaning do
+      example.run
+    end
   end
+
+  # config.before(:each) do
+  #   DatabaseCleaner.start
+  # end
+  #
+  # config.after(:each) do
+  #   DatabaseCleaner.clean
+  # end
 
   config.infer_spec_type_from_file_location!
 

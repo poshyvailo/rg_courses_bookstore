@@ -18,8 +18,8 @@ FactoryBot.define do
     end
 
     before(:create) do |book, evaluator|
-      book.authors << build_list(:author, evaluator.count_authors)
-      book.categories << build_list(:category, evaluator.count_categories)
+      book.authors << create_list(:author, evaluator.count_authors)
+      book.categories << create_list(:category, evaluator.count_categories)
     end
     #
     # factory(:soldout_book) { count 0 }

@@ -6,7 +6,7 @@ RSpec.describe Rating, type: :model do
   it do
     should validate_numericality_of(:rating_number)
                .is_greater_than_or_equal_to(1)
-               .is_less_than_or_equal_to(10)
+               .is_less_than_or_equal_to(5)
   end
   it { should belong_to(:book) }
   it { should belong_to(:customer) }

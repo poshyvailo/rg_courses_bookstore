@@ -2,7 +2,7 @@
 FactoryBot.define do
   factory :credit_card do
     card_owner 'Poshik'
-    number '1234 1234 1234 1234'
+    number '1234123412341234'
     expiration '12 / 22'
     cvv '222'
   end

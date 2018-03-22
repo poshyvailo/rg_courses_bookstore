@@ -11,21 +11,26 @@ class Book < ApplicationRecord
 
   has_many :rating
 
-  validates :title, presence: true
+  validates :title,
+            :price,
+            :in_stock,
+            presence: true
 
-  validates :price, presence: true, numericality: true
+  validates :price,
+            :height,
+            :width,
+            :depth,
+            numericality: { greater_than: 0 }
 
-  validates :height, :width, :depth, numericality: true
-
-  validates :in_stock, presence: true,
+  validates :in_stock,
             numericality: {
                 only_integer: true,
                 greater_than_or_equal_to: 0,
-                allow_nil: true
             }
 
   scope :price_sort, -> (value) { order(price: value) }
   scope :created_sort, -> (value) { order(created_at: value) }
-  scope :slider, -> { order(created_at: :desc).includes(:authors).limit(3) }
+  scope :title_sort, -> (value) { order(title: value) }
+  scope :slider, -> { created_sort(:desc).includes(:authors).limit(3) }
   scope :best_seller, -> { order("RANDOM()").includes(:authors).limit(4) }
 end
