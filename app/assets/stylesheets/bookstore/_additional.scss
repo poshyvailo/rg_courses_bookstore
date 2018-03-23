@@ -21,3 +21,11 @@ button .thumb-hover-link {
 .tooltip-inner {
   border-radius: 6px;
 }
+
+#coupon {
+  text-transform: uppercase
+}
+
+#coupon::placeholder {
+  text-transform: none;
+}

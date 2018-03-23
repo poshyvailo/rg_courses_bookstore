@@ -15,7 +15,7 @@ class OrderDecorator < ApplicationDecorator
   alias :item_total :sub_total
 
   def total
-    sub_total + delivery_cost.to_f
+    sub_total + delivery_cost.to_f - coupon_discount.to_f
   end
 
   def delivery_cost
@@ -23,7 +23,7 @@ class OrderDecorator < ApplicationDecorator
   end
 
   def coupon_discount
-    nil
+    coupon.discount if coupon.present?
   end
 
   def items

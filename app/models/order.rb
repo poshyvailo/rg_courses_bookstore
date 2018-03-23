@@ -15,6 +15,7 @@ class Order < ApplicationRecord
   belongs_to :customer, optional: true
   belongs_to :delivery_method, optional: true
   belongs_to :credit_card, optional: true
+  belongs_to :coupon, optional: true
 
   belongs_to :billing_address, class_name: 'Address', optional: true
   belongs_to :shipping_address, class_name: 'Address', optional: true

@@ -1,0 +1,6 @@
+= simple_form_for(cart_path, method: :put) do |f|
+  .input-group.general-input-group
+    = label_tag :coupon, t('cart.enter_coupon'), class: 'input-label'
+    = text_field_tag :coupon, nil, placeholder: t('cart.enter_coupon'), class: 'form-control mb-30'
+    %div
+      = f.button :submit, t('cart.update_cart'), class: 'btn btn-primary mb-15 res-block'
