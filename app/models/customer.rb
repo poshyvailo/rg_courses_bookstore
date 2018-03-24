@@ -5,7 +5,7 @@ class Customer < ApplicationRecord
          :rememberable,
          :trackable,
          :validatable,
-         :omniauthable
+         :omniauthable, omniauth_providers: %i[facebook]
 
   has_many :orders
   has_many :ratings
@@ -22,6 +22,22 @@ class Customer < ApplicationRecord
 
   def shipping_address
     super() || build_shipping_address
+  end
+
+  def self.from_omniauth(auth)
+    where(provider: auth.provider, uid: auth.uid).first_or_create do |customer|
+      customer.email = auth.info.email
+      customer.password = Devise.friendly_token[0,20]
+      # user.skip_confirmation!
+    end
+  end
+
+  def self.new_with_session(params, session)
+    super.tap do |customer|
+      if data = session['devise.facebook_data'] && session['devise.facebook_data']['extra']['raw_info']
+        customer.email = data['email'] if customer.email.blank?
+      end
+    end
   end
 
 end

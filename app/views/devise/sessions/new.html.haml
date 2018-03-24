@@ -1,7 +1,7 @@
 .general-main-wrap
   .text-center
     %h3.general-login-title= t('log_in')
-    %a.general-login-icon{href: "#"}
+    %a.general-login-icon{ href: customer_facebook_omniauth_authorize_path }
       %i.fa.fa-facebook-official
     %p.general-login-text= t('general.or')
   = render 'devise/sessions/login_form'
