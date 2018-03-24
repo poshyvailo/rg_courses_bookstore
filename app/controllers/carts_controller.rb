@@ -8,13 +8,13 @@ class CartsController < ApplicationController
     coupon = Coupon.find_by name: params[:coupon].upcase
 
     if coupon.nil?
-      redirect_to cart_path, alert: "Coupon not found" if coupon.nil?
+      redirect_to cart_path, alert: t('cart.msg.coupon_not_found') if coupon.nil?
     else
       if coupon.available?
         @order.update(coupon: coupon)
-        redirect_to cart_path, notice: "Coupon added"
+        redirect_to cart_path, notice: t('cart.msg.coupon_added')
       else
-        redirect_to cart_path, alert: "Coupon not active"
+        redirect_to cart_path, alert: t('cart.msg.coupon_used')
       end
     end
   end

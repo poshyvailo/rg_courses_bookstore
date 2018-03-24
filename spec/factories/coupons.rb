@@ -1,7 +1,11 @@
 FactoryBot.define do
   factory :coupon do
     name 'SALE'
-    discount 5.33
+    discount { FFaker.numerify '#.##' }
     available true
+
+    factory :used_coupon do
+      available false
+    end
   end
 end

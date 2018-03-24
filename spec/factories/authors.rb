@@ -4,7 +4,7 @@ FactoryBot.define do
   factory :author do
     firstname { FFaker::Name.first_name }
     lastname { FFaker::Name.last_name }
-    biography { FFaker::CheesyLingo.paragraph 50 }
+    biography { FFaker::CheesyLingo.paragraph 10 }
 
     # factory :author_with_books do
     #   transient { books_count 15 }

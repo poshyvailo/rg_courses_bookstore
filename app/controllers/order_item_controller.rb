@@ -8,7 +8,7 @@ class OrderItemController < ApplicationController
     AddCartItem.call(@order, @params) do
       on(:ok) do |order, book|
         save_order_in_cookie order.id
-        redirect_to request.referrer, notice: book.title
+        redirect_to request.referrer, notice: t('book.msg.added', title: book.title)
       end
     end
   end

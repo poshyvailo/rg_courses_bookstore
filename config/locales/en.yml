@@ -53,6 +53,8 @@ en:
     dimensions: 'Dimensions'
     materials: 'Materials'
     add_to_card: 'Add to Cart'
+    msg:
+      added: "Book \"%{title}\" added to cart!"
   cart:
     title: 'Cart'
     product: 'Product'
@@ -66,6 +68,10 @@ en:
     coupon: 'Coupon'
     order_total: 'Order Total'
     checkout_link: 'Checkout'
+    msg:
+      coupon_added: 'Coupon added'
+      coupon_not_found: 'Coupon not found'
+      coupon_used: 'Coupon used'
   address:
     billing: 'Billing Address'
     shipping: 'Shipping Address'
@@ -117,5 +123,3 @@ en:
     phone: "Phone %{phone}"
     back_to_store_link: 'Back to Store'
     place_order: 'Place Order'
-  flash:
-    added_book: 'Book added to cart'

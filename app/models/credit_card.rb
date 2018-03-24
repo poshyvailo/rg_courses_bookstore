@@ -12,11 +12,12 @@ class CreditCard < ApplicationRecord
   validate :expiration_not_be_in_the_past
 
   def expiration=(date)
-      begin
-        write_attribute(:expiration, Date.strptime(date, "%m / %y")) if date
-      rescue ArgumentError
-        nil
-      end
+    return date if date.is_a? Time
+    begin
+      write_attribute(:expiration, Date.strptime(date, "%m / %y")) if date
+    rescue ArgumentError
+      nil
+    end
   end
 
   def expiration_not_be_in_the_past
