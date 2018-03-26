@@ -3,7 +3,10 @@ Rails.application.routes.draw do
 
   ActiveAdmin.routes(self)
 
-  devise_for :customer, controllers: { omniauth_callbacks: 'omniauth_callbacks' }
+  devise_for :customer, controllers: {
+      omniauth_callbacks: 'customers/omniauth_callbacks',
+      registrations: 'customers/registrations'
+  }
 
   resource :customer, only: [:show, :update] do
     resources :orders, only: [:index, :show]

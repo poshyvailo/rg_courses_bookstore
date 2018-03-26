@@ -40,4 +40,16 @@ class Customer < ApplicationRecord
     end
   end
 
+  def soft_delete
+    self.touch(:deleted_at)
+  end
+
+  def active_for_authentication?
+    super && !deleted_at
+  end
+
+  def inactive_message
+    !deleted_at ? super : :deleted_account
+  end
+
 end
