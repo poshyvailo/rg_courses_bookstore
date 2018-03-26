@@ -4,6 +4,7 @@ en:
     close: 'Close'
     or: 'or'
     cancel: 'Cancel'
+    save: 'Save'
   main_menu:
     home: 'Home'
     catalog: 'Shop'
