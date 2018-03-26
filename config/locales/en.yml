@@ -124,3 +124,17 @@ en:
     phone: "Phone %{phone}"
     back_to_store_link: 'Back to Store'
     place_order: 'Place Order'
+  settings:
+    tab_address: 'Address'
+    tab_privacy: 'Privacy'
+    title: 'Settings'
+    email: 'Email'
+    password: 'Password'
+    remove_account: 'Remove Account'
+    labels:
+      email: 'Enter email'
+      old_password: 'Old Password'
+      new_password: 'New Password'
+      confirm_password: 'Confirm Password'
+      remove_account_btn: 'Please Remove My Account'
+      remove_account_confirm: 'I understand that all data will be lost'

@@ -1,15 +1,31 @@
 .col-md-5.mb-40{ class: ('col-md-offset-1' if type == 'shipping') }
   .visible-xs.visible-sm
-    %h3.general-subtitle.mt-0= "#{type.capitalize} Address"
+    %h3.general-subtitle.mt-0= t("address.#{type}")
   = simple_form_for(current_customer,
     url: :"update_#{type}_address_customer",
     html: { method: 'PUT', class: 'general-form-md', id: "#{type}-address" }) do |f|
     = f.simple_fields_for :"#{type}_address" do |ba|
-      = ba.input :firstname, label: 'First Name', placeholder: 'First Name'
-      = ba.input :lastname, label: 'Last Name', placeholder: 'Last Name'
-      = ba.input :delivery_address, label: 'Address', placeholder: 'Address'
-      = ba.input :city, label: 'City', placeholder: 'City'
-      = ba.input :zipcode, label: 'Zip', placeholder: 'Zip'
-      = ba.input :country, label: 'Country', prompt: 'Select a country'
-      = ba.input :phone, label: 'Phone', placeholder: 'Phone'
-      = ba.button :submit, t('general.save'), class: 'btn btn-default'
+      = ba.input :firstname,
+        label: t('address.labels.firstname'),
+        placeholder: t('address.labels.firstname')
+      = ba.input :lastname,
+        label: t('address.labels.lastname'),
+        placeholder: t('address.labels.lastname')
+      = ba.input :delivery_address,
+        label: t('address.labels.address'),
+        placeholder: t('address.labels.address')
+      = ba.input :city,
+        label: t('address.labels.city'),
+        placeholder: t('address.labels.city')
+      = ba.input :zipcode,
+        label: t('address.labels.zip'),
+        placeholder: t('address.labels.zip')
+      = ba.input :country,
+        label: t('address.labels.country'),
+        prompt: t('address.placeholders.country')
+      = ba.input :phone,
+        label: t('address.labels.phone'),
+        placeholder: t('address.labels.phone')
+      = ba.button :submit,
+        t('general.save'),
+        class: 'btn btn-default'

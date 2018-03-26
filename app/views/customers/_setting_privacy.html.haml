@@ -1,41 +1,44 @@
 .row.mb-60
   .col-sm-5
-    %p.in-gold-500.font-18.mb-25 Email
+    %p.in-gold-500.font-18.mb-25= t('settings.email')
     = simple_form_for(current_customer,
       url: change_email_customer_path,
       html: { method: 'PUT', class: 'general-form-md', id: 'change-email' }) do |f|
       = f.input :email,
-        label: 'Enter email',
-        placeholder: 'Enter email',
+        label: t('settings.labels.email'),
+        placeholder: t('settings.labels.email'),
         autocomplete: 'email'
       .general-text-align
-        = f.button :submit, 'Save', class: 'btn btn-default'
+        = f.button :submit, t('general.save'), class: 'btn btn-default'
   .col-sm-5.col-sm-offset-1
-    %p.in-gold-500.font-18.mb-25 Password
+    %p.in-gold-500.font-18.mb-25= t('settings.password')
     = simple_form_for(current_customer,
       url: change_password_customer_path,
       html: { method: 'PUT', class: 'general-form-md divider-lg-bottom pb-25', id: 'change-password' }) do |f|
       = f.input :current_password,
-        label: 'Old Password',
-        placeholder: 'Old Password',
+        label: t('settings.labels.old_password'),
+        placeholder: t('settings.labels.old_password'),
         wrapper_html: { class: 'mb-30' }
       = f.input :password,
-        label: 'New Password',
-        placeholder: 'New Password',
+        label: t('settings.labels.new_password'),
+        placeholder: t('settings.labels.new_password'),
         wrapper_html: { class: 'mb-30' }
       = f.input :password_confirmation,
-        label: 'Confirm Password',
-        placeholder: 'Confirm Password',
+        label: t('settings.labels.confirm_password'),
+        placeholder: t('settings.labels.confirm_password'),
         wrapper_html: { class: 'mb-40' }
-      = f.button :submit, 'Save', class: 'btn btn-default',
+      = f.button :submit,
+        t('general.save'),
+        class: 'btn btn-default',
         wrapper_html: { class: 'mb-10' }
   .col-sm-12
-    %p.in-gold-500.font-18.mb-25 Remove Account
+    %p.in-gold-500.font-18.mb-25= t('settings.remove_account')
     = simple_form_for(current_customer,
       url: customer_registration_path,
-      html: { method: 'DELETE', id: 'remove-account', class: nil, id: 'remove-account' }) do |f|
+      html: { method: 'DELETE', id: 'remove-account', class: nil }) do |f|
       .general-settings-btn
-        = f.button :submit, 'Please Remove My Account',
+        = f.button :submit,
+          t('settings.labels.remove_account_btn'),
           class: 'btn btn-default mb-20',
           disabled: true
       .form-group.checkbox.general-settings-checkbox
@@ -43,5 +46,5 @@
           %input.checkbox-input{ type: 'checkbox', hidden: 'true', id: 'delete-checkbox',}
           %span.checkbox-icon
             %i.fa.fa-check
-          %span.checkbox-text I understand that all data will be lost
+          %span.checkbox-text= t('settings.labels.remove_account_confirm')
     = javascript_include_tag 'delete_account.js'
