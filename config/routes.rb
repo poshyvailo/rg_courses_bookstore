@@ -8,14 +8,14 @@ Rails.application.routes.draw do
       registrations: 'customers/registrations'
   }
 
-  resource :customer, only: [:show, :update] do
+  resources :customers, only: [:show, :update] do
     resources :orders, only: [:index, :show]
     member do
       put 'change_email'
       put 'change_password'
       put 'remove_account'
-      put 'update_billing_address'
-      put 'update_shipping_address'
+      # put 'update_billing_address'
+      # put 'update_shipping_address'
     end
   end
 

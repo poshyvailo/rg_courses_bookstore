@@ -1,8 +1,16 @@
 class CustomersController < ApplicationController
-
   before_action :authenticate_customer!
 
   def show; end
+
+  def update
+    UpdateCustomer.call(current_customer, params.require(:customer)) do
+      on(:ok) do |message|
+        redirect_to customer_path, notice: message
+      end
+      on(:fail) { render :show }
+    end
+  end
 
   def change_email
     current_customer.assign_attributes email_params

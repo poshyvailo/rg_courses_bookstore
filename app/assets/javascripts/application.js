@@ -25,6 +25,7 @@
 
 $(function () {
     $('[data-toggle="tooltip"]').tooltip();
+
     $('[id*="expiration"]').inputmask('datetime', {
         inputFormat: "mm / yy",
         placeholder: "MM / YY"

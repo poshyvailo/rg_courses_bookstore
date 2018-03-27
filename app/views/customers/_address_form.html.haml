@@ -2,9 +2,9 @@
   .visible-xs.visible-sm
     %h3.general-subtitle.mt-0= t("address.#{type}")
   = simple_form_for(current_customer,
-    url: :"update_#{type}_address_customer",
     html: { method: 'PUT', class: 'general-form-md', id: "#{type}-address" }) do |f|
     = f.simple_fields_for :"#{type}_address" do |ba|
+      = f.hidden_field :action, value: "#{type}-address"
       = ba.input :firstname,
         label: t('address.labels.firstname'),
         placeholder: t('address.labels.firstname')
