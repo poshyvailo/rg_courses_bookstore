@@ -138,3 +138,8 @@ en:
       confirm_password: 'Confirm Password'
       remove_account_btn: 'Please Remove My Account'
       remove_account_confirm: 'I understand that all data will be lost'
+    flash:
+      email_changed: 'Email successfully changed'
+      password_changed: 'Password successfully changed'
+      billing_address_changed: 'Billing address successfully changed'
+      shipping_address_changed: 'Shipping address successfully changed'

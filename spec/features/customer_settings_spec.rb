@@ -7,7 +7,7 @@ feature 'Customer Settings' do
 
   background do
     login_as customer, scope: :customer
-    visit customer_path
+    visit customers_path
   end
 
   context 'Address tab' do
@@ -26,7 +26,7 @@ feature 'Customer Settings' do
           click_button t('general.save')
       end
 
-      expect(page).to have_content 'Shipping address successfully changed'
+      expect(page).to have_content t('settings.flash.shipping_address_changed')
     end
 
     scenario 'Customer enter invalid shipping address' do
@@ -49,7 +49,7 @@ feature 'Customer Settings' do
         click_button t('general.save')
       end
 
-      expect(page).to have_content 'Billing address successfully changed'
+      expect(page).to have_content t('settings.flash.billing_address_changed')
     end
 
     scenario 'Customer enter invalid billing address' do
@@ -73,6 +73,7 @@ feature 'Customer Settings' do
         click_button t('general.save')
       end
 
+      expect(page).to have_content t('settings.flash.email_changed')
       expect(customer.email) == email
     end
 
@@ -85,7 +86,7 @@ feature 'Customer Settings' do
         click_button t('general.save')
       end
 
-      expect(page).to have_content 'Password successfully changed'
+      expect(page).to have_content t('settings.flash.password_changed')
     end
 
     scenario 'Customer delete account' do
@@ -94,7 +95,7 @@ feature 'Customer Settings' do
       end
 
       expect(page).to have_current_path root_path
-      # expect(page).to have_content 'Password successfully changed'
+      expect(page).to have_content t('devise.registrations.destroyed')
     end
   end
 end

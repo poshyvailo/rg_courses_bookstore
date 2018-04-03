@@ -1,10 +1,10 @@
 .col-md-5.mb-40{ class: ('col-md-offset-1' if type == 'shipping') }
   .visible-xs.visible-sm
     %h3.general-subtitle.mt-0= t("address.#{type}")
-  = simple_form_for(current_customer,
+  = simple_form_for(current_customer, url: customers_path,
     html: { method: 'PUT', class: 'general-form-md', id: "#{type}-address" }) do |f|
     = f.simple_fields_for :"#{type}_address" do |ba|
-      = f.hidden_field :action, value: "#{type}-address"
+      = f.hidden_field :action, value: "#{type}-address", id: nil
       = ba.input :firstname,
         label: t('address.labels.firstname'),
         placeholder: t('address.labels.firstname')

@@ -2,8 +2,9 @@
   .col-sm-5
     %p.in-gold-500.font-18.mb-25= t('settings.email')
     = simple_form_for(current_customer,
-      url: change_email_customer_path,
+      url: customers_path,
       html: { method: 'PUT', class: 'general-form-md', id: 'change-email' }) do |f|
+      = f.hidden_field :action, value: 'change-email', id: nil
       = f.input :email,
         label: t('settings.labels.email'),
         placeholder: t('settings.labels.email'),
@@ -13,8 +14,9 @@
   .col-sm-5.col-sm-offset-1
     %p.in-gold-500.font-18.mb-25= t('settings.password')
     = simple_form_for(current_customer,
-      url: change_password_customer_path,
+      url: customers_path,
       html: { method: 'PUT', class: 'general-form-md divider-lg-bottom pb-25', id: 'change-password' }) do |f|
+      = f.hidden_field :action, value: 'change-password', id: nil
       = f.input :current_password,
         label: t('settings.labels.old_password'),
         placeholder: t('settings.labels.old_password'),
