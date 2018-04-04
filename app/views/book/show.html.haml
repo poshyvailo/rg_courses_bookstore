@@ -5,6 +5,8 @@
   .col-sm-6
     = render 'book/images', image: @book.image
   .col-sm-6
-    = render 'book/description', book: @book
+    = render 'book/description'
 .mb-80
-  = render 'book/reviews', reviews: @book.reviews
+  = render 'book/reviews'
+  - if can? :create, Review
+    = render 'book/write_review'

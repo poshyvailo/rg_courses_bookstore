@@ -8,7 +8,7 @@ class Customer < ApplicationRecord
          :omniauthable, omniauth_providers: %i[facebook]
 
   has_many :orders
-  has_many :ratings
+  has_many :reviews
 
   belongs_to :billing_address, class_name: 'Address', optional: true
   belongs_to :shipping_address, class_name: 'Address', optional: true

@@ -1,5 +1,10 @@
-class Rating < ApplicationRecord
+class Review < ApplicationRecord
   validates :text_review, presence: true
+
+  validates :firstname,
+            :lastname,
+            presence: true,
+            format: { with: /\A[a-zA-Z\-]+\z/ }
 
   validates :rating_number,
             presence: true,

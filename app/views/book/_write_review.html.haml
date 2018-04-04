@@ -1,0 +1,25 @@
+%h3 Write a Review
+= simple_form_for :review, url: catalog_book_reviews_path(@book), html: { class: nil } do |f|
+  .row
+    .col-md-6
+      = f.input :firstname,
+        placeholder: 'First Name',
+        label: 'First Name'
+    .col-md-6
+      = f.input :lastname,
+        placeholder: 'Last Name',
+        label: 'Last Name'
+  .row
+    .col-md-3
+      = f.input :rating_number,
+      as: :select,
+      collection: 1..5,
+      include_blank: false,
+      label: 'Score',
+      prompt: 'Select your score'
+  = f.input :text_review,
+    as: :text,
+    label: 'Review',
+    input_html: { rows: 5 },
+    placeholder: 'Enter your review'
+  = f.submit 'Post', class: 'btn btn-default pull-right general-position'

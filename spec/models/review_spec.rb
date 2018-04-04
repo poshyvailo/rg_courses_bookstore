@@ -1,7 +1,9 @@
 require 'rails_helper'
 
-RSpec.describe Rating, type: :model do
+RSpec.describe Review, type: :model do
   it { should validate_presence_of(:text_review) }
+  it { should validate_presence_of(:firstname) }
+  it { should validate_presence_of(:lastname) }
   it { should validate_presence_of(:rating_number) }
   it do
     should validate_numericality_of(:rating_number)

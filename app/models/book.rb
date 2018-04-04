@@ -9,7 +9,7 @@ class Book < ApplicationRecord
   has_many :books_category, dependent: :destroy
   has_many :categories, through: :books_category
 
-  has_many :rating
+  has_many :reviews
 
   validates :title,
             :price,

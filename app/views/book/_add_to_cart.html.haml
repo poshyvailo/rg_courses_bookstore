@@ -1,6 +1,6 @@
 = simple_form_for :order_item, url: order_item_index_path, html: { class: false } do |f|
-  = f.hidden_field :book_id, value: book.id
-  = f.hidden_field :price, value: book.price
+  = f.hidden_field :book_id, value: @book.id
+  = f.hidden_field :price, value: @book.price
   .col-xs-5.col-md-3
     .input-group.general-position
       .btn.btn-link.input-link{ onclick: "change_quantity('minus')" }

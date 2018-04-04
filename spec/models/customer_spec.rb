@@ -8,5 +8,5 @@ RSpec.describe Customer, type: :model do
   it { should allow_value('test.mail@mail.dp.ua').for(:email) }
   it { should allow_value('-@-.ua').for(:email) }
   it { should have_many(:orders) }
-  it { should have_many(:ratings) }
+  it { should have_many(:reviews) }
 end

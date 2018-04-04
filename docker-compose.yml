@@ -16,8 +16,8 @@ services:
     command: bundle exec rails s -p 3099 -b '0.0.0.0'
     volumes:
       - .:/app
-    env_file:
-      - secrets.env
+#    env_file:
+#      - secrets.env
     ports:
       - "3099:3099"
     depends_on:
