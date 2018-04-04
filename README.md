@@ -1,7 +1,9 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+web: http://rails-pgsql-bookstore-poshik-bookstore.193b.starter-ca-central-1.openshiftapps.com/
 
-Things you may want to cover:
+Admin page: http://rails-pgsql-bookstore-poshik-bookstore.193b.starter-ca-central-1.openshiftapps.com/admin
 
+Admin user: admin@example.com
+
+Admin password: password
