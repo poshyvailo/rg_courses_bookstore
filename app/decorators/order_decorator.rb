@@ -46,4 +46,12 @@ class OrderDecorator < ApplicationDecorator
     object.completed_date.strftime("%B %d, %Y")
   end
 
+  def completed_at
+    object.completed_date.strftime("%Y-%m-%d")
+  end
+
+  def state
+    object.state.split('_').map(&:capitalize).join(' ')
+  end
+
 end

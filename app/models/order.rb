@@ -3,11 +3,14 @@ class Order < ApplicationRecord
 
   aasm :column => :state do
     state :in_progress, initial: true
-    state :completed
-    state :shipped
+    state :waiting_for_processing
+    state :in_delivery
+    state :delivered
+    state :canceled
 
-    event(:completed) { transitions from: [:in_progress], to: :completed }
-    event(:shipped) { transitions from: [:completed], to: :shipped }
+    event(:waiting_for_processing) { transitions from: :in_progress, to: :waiting_for_processing }
+    event(:in_delivery) { transitions from: :waiting_for_processing, to: :in_delivery }
+    event(:delivered) { transitions from: :in_delivery, to: :delivered }
   end
 
   has_many :order_items, dependent: :delete_all

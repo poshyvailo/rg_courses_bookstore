@@ -58,7 +58,7 @@ class CheckoutController < ApplicationController
 
   def current_step
     s = :complete
-    s = :confirm unless @order.completed?
+    s = :confirm unless @order.waiting_for_processing?
     s = :payment if @order.credit_card_id.nil?
     s = :delivery if @order.delivery_method_id.nil?
     s = :address if @order.billing_address_id.nil? || @order.shipping_address_id.nil?
@@ -77,7 +77,7 @@ class CheckoutController < ApplicationController
   def complete_order
     @params[:completed_date] = Time.now.to_date
     @params[:total_price] = @order.total
-    @params[:state] = :completed
+    @params[:state] = :waiting_for_processing
     cookies.delete :order_id
   end
 

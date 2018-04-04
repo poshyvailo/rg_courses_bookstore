@@ -109,7 +109,7 @@ ActiveRecord::Schema.define(version: 20180404075407) do
   create_table "coupons", force: :cascade do |t|
     t.string "name"
     t.decimal "discount", precision: 10, scale: 2
-    t.boolean "available"
+    t.boolean "available", default: true
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["name"], name: "index_coupons_on_name"
