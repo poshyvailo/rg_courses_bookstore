@@ -11,12 +11,20 @@ class ApplicationController < ActionController::Base
   protected
 
   def after_sign_in_path_for(resource)
-    merge_orders
-    root_url
+    if resource.is_a?(AdminUser)
+      admin_dashboard_path
+    else
+      merge_orders
+      root_path
+    end
   end
 
   def after_sign_out_path_for(resource)
-    delete_order_from_cookie
-    root_url
+    if resource.is_a?(AdminUser)
+      admin_root_path
+    else
+      delete_order_from_cookie
+      root_url
+    end
   end
 end
