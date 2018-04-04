@@ -1,4 +1,7 @@
 class Review < ApplicationRecord
+
+  before_save :set_verified
+
   validates :text_review, presence: true
 
   validates :firstname,
@@ -16,4 +19,8 @@ class Review < ApplicationRecord
 
   belongs_to :book
   belongs_to :customer
+
+  def set_verified
+    self.verified = customer.orders.find_book(book).empty? ? false : true
+  end
 end

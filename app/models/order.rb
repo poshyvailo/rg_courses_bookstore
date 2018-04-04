@@ -25,6 +25,8 @@ class Order < ApplicationRecord
   accepts_nested_attributes_for :credit_card
 
   scope :in_progress, -> { where(state: :in_progress) }
+  scope :not_in_progress, -> { where.not(state: :in_progress) }
+  scope :find_book, -> (book) { not_in_progress.includes(:order_items).where("order_items.book" => book) }
 
   %w[billing_address shipping_address credit_card].each do |method|
     define_method method.to_sym do
