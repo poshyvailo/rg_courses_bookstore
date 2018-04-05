@@ -61,7 +61,7 @@ class CheckoutController < ApplicationController
     s = :confirm unless @order.waiting_for_processing?
     s = :payment if @order.credit_card_id.nil?
     s = :delivery if @order.delivery_method_id.nil?
-    s = :address if @order.billing_address_id.nil? || @order.shipping_address_id.nil?
+    s = :address if @order.object.billing_address_id.nil? || @order.object.shipping_address_id.nil?
     s
   end
 
