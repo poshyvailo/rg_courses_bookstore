@@ -57,6 +57,7 @@ class CheckoutController < ApplicationController
   end
 
   def current_step
+    logger.debug "#{@order.inspect}"
     s = :complete
     s = :confirm unless @order.waiting_for_processing?
     s = :payment if @order.credit_card_id.nil?
