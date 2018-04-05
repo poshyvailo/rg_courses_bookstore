@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180404075407) do
+ActiveRecord::Schema.define(version: 20180405204855) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -199,8 +199,14 @@ ActiveRecord::Schema.define(version: 20180404075407) do
   add_foreign_key "books_authors", "books"
   add_foreign_key "books_categories", "books"
   add_foreign_key "books_categories", "categories"
+  add_foreign_key "customers", "addresses", column: "billing_address_id"
+  add_foreign_key "customers", "addresses", column: "shipping_address_id"
   add_foreign_key "order_items", "books"
   add_foreign_key "order_items", "orders", on_delete: :cascade
+  add_foreign_key "orders", "addresses", column: "billing_address_id"
+  add_foreign_key "orders", "addresses", column: "billing_address_id", name: "orders_billing_address_id_fkey"
+  add_foreign_key "orders", "addresses", column: "shipping_address_id"
+  add_foreign_key "orders", "addresses", column: "shipping_address_id", name: "orders_shipping_address_id_fkey"
   add_foreign_key "orders", "coupons"
   add_foreign_key "orders", "credit_cards"
   add_foreign_key "orders", "customers"
