@@ -143,3 +143,22 @@ en:
       password_changed: 'Password successfully changed'
       billing_address_changed: 'Billing address successfully changed'
       shipping_address_changed: 'Shipping address successfully changed'
+  orders:
+    title: 'My Orders'
+    not_found: 'Orders not found'
+    table:
+      number: 'Number'
+      complete: 'Completed at'
+      status: 'Status'
+      total: 'Total'
+    filters:
+      sort_by: 'Sort by'
+      title: 'Filter'
+      all: 'All'
+      waiting: 'Waiting for processing'
+      in_delivery: 'In Delivery'
+      delivered: 'Delivered'
+      canceled: 'Canceled'
+
+
+

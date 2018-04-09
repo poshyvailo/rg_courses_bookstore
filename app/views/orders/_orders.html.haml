@@ -2,21 +2,25 @@
   %thead
     %tr
       %th
-        %span.in-grey-600 Number
+        %span.in-grey-600= t('orders.table.number')
       %th
-        %span.in-grey-600 Completed at
+        %span.in-grey-600= t('orders.table.complete')
       %th
-        %span.in-grey-600 Status
+        %span.in-grey-600= t('orders.table.status')
       %th
-        %span.in-grey-600 Total
+        %span.in-grey-600= t('orders.table.total')
   %tbody
-    - @orders.each do |order|
+    - unless @orders.empty?
+      - @orders.each do |order|
+        %tr
+          %td
+            = link_to order.order_number, customers_order_path(order), class: 'general-order-number'
+          %td
+            %span.in-grey-900.font-16.fw-300= order.completed_at
+          %td
+            %span.font-16.in-grey-900.fw-300= order.state
+          %td
+            %strong.font-16= currency(order.total_price)
+    - else
       %tr
-        %td
-          %a.general-order-number{href: customers_order_path(order)}= order.order_number
-        %td
-          %span.in-grey-900.font-16.fw-300= order.completed_at
-        %td
-          %span.font-16.in-grey-900.fw-300= order.state
-        %td
-          %strong.font-16= currency(order.total_price)
+        %td.not-found-orders{:colspan => 4}= t('orders.not_found')

@@ -4,6 +4,7 @@ FactoryBot.define do
     email { FFaker::Internet.free_email }
     password 'ABC123456abc'
     password_confirmation 'ABC123456abc'
+    confirmed_at Time.now
 
     factory :customer_with_order do
       after(:create) do |customer|

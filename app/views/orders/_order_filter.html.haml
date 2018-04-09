@@ -1,14 +1,16 @@
-%p.lead.small.mb-10.visible-xs Sort by
+%p.lead.small.mb-10.visible-xs= t('orders.filters.sort_by')
 .dropdowns.dropdown.general-order-dropdown
-  %a.dropdown-toggle.lead.small{href: "#", 'data-toggle': "dropdown", role: "button", 'aria-haspopup': "true", 'aria-expanded': "false"}
-    Waiting for processing
+  %a.dropdown-toggle.lead.small{ href: '#', 'data-toggle': 'dropdown', role: 'button', 'aria-haspopup': 'true', 'aria-expanded': 'false'}
+    = t('orders.filters.title')
     %i.fa.fa-angle-down.dropdown-icon.pull-right
   %ul.dropdown-menu
     %li
-      %a{href: "#"} Newest first
+      = link_to t('orders.filters.all')
     %li
-      %a{href: "#"} Popular first
+      = link_to t('orders.filters.waiting'), url_for(filter: :waiting_for_processing)
     %li
-      %a{href: "#"} Price: Low to hight
+      = link_to t('orders.filters.in_delivery'), url_for(filter: :in_delivery)
     %li
-      %a{href: "#"} Price: Low to hight
+      = link_to t('orders.filters.delivered'), url_for(filter: :delivered)
+    %li
+      = link_to t('orders.filters.canceled'), url_for(filter: :canceled)

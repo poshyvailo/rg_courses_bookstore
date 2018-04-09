@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180405204855) do
+ActiveRecord::Schema.define(version: 20180409112207) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -142,6 +142,10 @@ ActiveRecord::Schema.define(version: 20180405204855) do
     t.string "provider"
     t.string "uid"
     t.datetime "deleted_at"
+    t.string "confirmation_token"
+    t.datetime "confirmed_at"
+    t.datetime "confirmation_sent_at"
+    t.index ["confirmation_token"], name: "index_customers_on_confirmation_token", unique: true
     t.index ["email"], name: "index_customers_on_email", unique: true
     t.index ["reset_password_token"], name: "index_customers_on_reset_password_token", unique: true
   end
@@ -204,9 +208,7 @@ ActiveRecord::Schema.define(version: 20180405204855) do
   add_foreign_key "order_items", "books"
   add_foreign_key "order_items", "orders", on_delete: :cascade
   add_foreign_key "orders", "addresses", column: "billing_address_id"
-  add_foreign_key "orders", "addresses", column: "billing_address_id", name: "orders_billing_address_id_fkey"
   add_foreign_key "orders", "addresses", column: "shipping_address_id"
-  add_foreign_key "orders", "addresses", column: "shipping_address_id", name: "orders_shipping_address_id_fkey"
   add_foreign_key "orders", "coupons"
   add_foreign_key "orders", "credit_cards"
   add_foreign_key "orders", "customers"

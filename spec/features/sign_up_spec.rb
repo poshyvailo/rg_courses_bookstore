@@ -10,7 +10,7 @@ feature 'Sign Up' do
       fill_in 'customer_password_confirmation', with: '12345678'
       click_button t('auth.sign_up')
     end
-    expect(page).to have_content 'Welcome! You have signed up successfully'
+    expect(page).to have_content t('devise.registrations.signed_up_but_unconfirmed')
   end
 
   scenario 'Customer did not enter e-mail and password' do
